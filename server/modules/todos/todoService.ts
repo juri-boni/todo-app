@@ -2,17 +2,19 @@ import pool from "../../config/dbConfig";
 
 export const fetchTodos = async () => {
   const result = await pool.query("SELECT * FROM todos");
-  console.log("RESULT", result);
+  // console.log("RESULT", result);
   return result.rows;
 };
 
-// export const addTodo = async (title: string) => {
-//   const result = await pool.query(
-//     "INSERT INTO todos (title) VALUES ($1) RETURNING *",
-//     [title]
-//   );
-//   return result.rows[0];
-// };
+// Service: Fetch todos by user_id
+export const fetchTodosByUser = async (user_id: number) => {
+  const query = `
+    SELECT * FROM todos 
+    WHERE user_id = $1 OR created_by = $1 AND deleted = FALSE
+  `;
+  const result = await pool.query(query, [user_id]);
+  return result.rows;
+};
 
 export const addTodo = async (todoData: {
   title: string;
@@ -79,4 +81,83 @@ export const addTodo = async (todoData: {
 
   const result = await pool.query(query, values);
   return result.rows[0]; // Return the newly created todo
+};
+
+// Delete Todo (Soft Delete)
+export const deleteTodo = async (todo_id: number) => {
+  const query = `
+    UPDATE todos
+    SET 
+      deleted = TRUE,
+      deleted_at = CURRENT_TIMESTAMP
+    WHERE id = $1
+    RETURNING *;
+  `;
+  const result = await pool.query(query, [todo_id]);
+  return result.rows[0];
+};
+
+// Service: Update a todo by id
+export const updateTodo = async (
+  todo_id: number,
+  todoData: Partial<{
+    title: string;
+    description?: string;
+    completed?: boolean;
+    due_date?: Date;
+    priority?: number;
+    tags?: string[];
+    estimated_time?: number;
+    notes?: string;
+    color?: string;
+    recurring_type?: string;
+  }>
+) => {
+  const {
+    title,
+    description,
+    completed,
+    due_date,
+    priority,
+    tags,
+    estimated_time,
+    notes,
+    color,
+    recurring_type,
+  } = todoData;
+
+  const query = `
+    UPDATE todos
+    SET 
+      title = COALESCE($1, title),
+      description = COALESCE($2, description),
+      completed = COALESCE($3, completed),
+      due_date = COALESCE($4, due_date),
+      priority = COALESCE($5, priority),
+      tags = COALESCE($6, tags),
+      estimated_time = COALESCE($7, estimated_time),
+      notes = COALESCE($8, notes),
+      color = COALESCE($9, color),
+      recurring_type = COALESCE($10, recurring_type),
+      updated_at = CURRENT_TIMESTAMP
+    WHERE id = $11
+    RETURNING *;
+  `;
+
+  const values = [
+    title,
+    description,
+    completed,
+    due_date,
+    priority,
+    tags,
+    estimated_time,
+    notes,
+    color,
+    recurring_type,
+    todo_id,
+  ];
+
+  const result = await pool.query(query, values);
+  return result.rows[0];
 };

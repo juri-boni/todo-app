@@ -1,6 +1,12 @@
 import { Request, Response } from "express";
 // import pool from "../../config/dbConfig";
-import { fetchTodos, addTodo } from "./todoService";
+import {
+  fetchTodos,
+  addTodo,
+  deleteTodo,
+  updateTodo,
+  fetchTodosByUser,
+} from "./todoService";
 
 //Controller function to get All todos
 
@@ -17,19 +23,17 @@ export const getTodos = async (req: Request, res: Response) => {
   }
 };
 
-// export const createTodo = async (req: Request, res: Response) => {
-//   const { title } = req.body;
-//   if (!title) {
-//     res.status(400).json({ message: "Title is required" });
-//   }
-//   try {
-//     const newTodo = await addTodo(title);
-//     res.status(201).json(newTodo);
-//   } catch (error) {
-//     console.error("Error adding todo:", error);
-//     res.status(500).send("Server error");
-//   }
-// };
+export const getTodosByUser = async (req: Request, res: Response) => {
+  const { user_id } = req.params;
+
+  try {
+    const todos = await fetchTodosByUser(parseInt(user_id));
+    res.json(todos);
+  } catch (error) {
+    console.error("Error fetching todos by user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 export const createTodo = async (req: Request, res: Response) => {
   try {
@@ -52,6 +56,33 @@ export const createTodo = async (req: Request, res: Response) => {
     res.status(201).json(newTodo);
   } catch (error) {
     console.error("Error creating todo:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+// Controller: Delete (soft delete) a todo
+export const removeTodo = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    const deletedTodo = await deleteTodo(parseInt(id));
+    res.json(deletedTodo);
+  } catch (error) {
+    console.error("Error deleting todo:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+// Controller: Update a todo
+export const modifyTodo = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const todoData = req.body;
+
+  try {
+    const updatedTodo = await updateTodo(parseInt(id), todoData);
+    res.json(updatedTodo);
+  } catch (error) {
+    console.error("Error updating todo:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
