@@ -5,6 +5,11 @@ import path from "path";
 import todosRoutes from "../routes/todosRoutes";
 import userRoutes from "../routes/usersRoutes";
 
+// const crypto = require("crypto");
+
+// const jwtSecret = crypto.randomBytes(64).toString("hex");
+// console.log("jwtSecret ", jwtSecret);
+
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 const app = express();

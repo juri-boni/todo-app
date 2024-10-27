@@ -1,6 +1,18 @@
 import { Request, Response } from "express";
-import { addUser } from "./usersService";
+import { loginUser, addUser } from "./usersService";
 import pool from "../../config/dbConfig";
+
+export const handleLogin = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+  try {
+    // 1. Call the loginUser function
+    const { token, user } = await loginUser(email, password);
+    res.status(200).json({ token, user });
+  } catch (error: any) {
+    console.error("Error logging in: ", error);
+    res.status(400).json({ message: error.message });
+  }
+};
 
 export const createUser = async (
   req: Request,
