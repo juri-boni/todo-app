@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 
 import todosRoutes from "../routes/todosRoutes";
+import userRoutes from "../routes/usersRoutes";
 
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
@@ -13,9 +14,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
-  res.status(500).json({ message: "Something went wrong!" });
+  const statusCode = err.status || 500;
+  res.status(statusCode).json({ message: "Something went wrong!" });
 });
 app.use("/api", todosRoutes);
+app.use("/api/users", userRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Server is running!");
