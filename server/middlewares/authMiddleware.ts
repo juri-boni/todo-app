@@ -1,16 +1,22 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import pool from "../config/dbConfig";
+import { sendError } from "../utils/errorHelper";
 
 // import { Request } from "express";
 
-interface AuthenticatedRequest extends Request {
-  user?: {
-    id: number;
-    username: string;
-  };
-}
+// interface AuthenticatedRequest extends Request {
+//   user?: {
+//     id: number;
+//     username: string;
+//   };
+// }
 
-export const verifyToken = (
+// const sendError = (res: Response, status: number, message: string) => {
+//   res.status(status).json({ message });
+// };
+
+export const verifyToken = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -20,16 +26,18 @@ export const verifyToken = (
   // console.log(authorization?.startsWith("Bearer"));
 
   if (!authorization || !authorization?.startsWith("Bearer")) {
-    res.status(401).json({ message: "No authorization in Headers" });
-    console.log("No authorization in Headers");
+    // res.status(401).json({ message: "No authorization in Headers" });
+    sendError(res, 401, "No authorization in Headers");
+    // console.log("No authorization in Headers");
     return;
   }
 
   const token = authorization?.split(" ")[1];
 
   if (!token) {
-    res.status(401).json({ message: "Access denied. No token provided" });
-    console.log("Access denied. No token provided");
+    // res.status(401).json({ message: "Access denied. No token provided" });
+    sendError(res, 401, "Access denied. No token provided");
+    // console.log("Access denied. No token provided");
     return;
   }
 
@@ -38,14 +46,33 @@ export const verifyToken = (
       id: number;
       username: string;
     };
-    console.log(decoded);
-    // req.user = decoded;
+    const user = await fetchUserData(req, res, decoded.id);
 
-    (req as any).user = decoded; // Use `any` to bypass the type error
+    // console.log(decoded);
+    // req.user = decoded;
+    // console.log("USER?? ", user);
+    (req as any).user = user; // Use `any` to bypass the type error
     next();
   } catch (error) {
-    res.status(403).json({ message: "Invalid or expired token." });
-    console.log("INVALID OR EXPIRED TOKEN");
+    // res.status(403).json({ message: "Invalid or expired token." });
+    sendError(res, 403, "Invalid or expired token.");
+
+    // console.log("INVALID OR EXPIRED TOKEN");
     return;
   }
+};
+
+const fetchUserData = async (req: Request, res: Response, user_id: number) => {
+  const query = `SELECT id, username, role FROM users WHERE id = $1`;
+
+  const result = await pool.query(query, [user_id]);
+
+  if (result.rows.length === 0) {
+    // res.status(404).json({ message: "User not found" });
+    sendError(res, 404, "User not found");
+    return;
+  }
+
+  const user = result.rows[0];
+  return user;
 };

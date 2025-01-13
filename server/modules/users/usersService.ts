@@ -45,8 +45,9 @@ export const addUser = async (userData: {
   username: string;
   email: string;
   password: string;
+  role: string;
 }): Promise<User | null> => {
-  const { username, email, password } = userData;
+  const { username, email, password, role } = userData;
 
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -55,13 +56,16 @@ export const addUser = async (userData: {
         INSERT INTO users (
            username, 
            email, 
-           password
+           password,
+           role
         )
-        VALUES ($1, $2, $3)
+        VALUES ($1, $2, $3, $4)
         RETURNING *;
   `;
 
-  const values = [username, email, hashedPassword];
+  const values = [username, email, hashedPassword, role || "user"];
+
+  console.log(query);
 
   try {
     console.log("Adding user to database...");
