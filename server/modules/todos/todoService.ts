@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import pool from "../../config/dbConfig";
 
 export const fetchTodos = async () => {
@@ -84,8 +85,29 @@ export const addTodo = async (todoData: {
 };
 
 // Delete Todo (Soft Delete)
-export const deleteTodo = async (todo_id: number) => {
+export const deleteTodo = async (
+  req: Request,
+  res: Response,
+  todo_id: number
+) => {
+  const { id } = req.params;
+  const user_id = (req as any).user.id;
+
   const query = `
+    SELECT * FROM todos
+    WHERE id = $1 AND user_id = $2 AND deleted = FALSE;
+    `;
+
+  const result = await pool.query(query, [id, user_id]);
+
+  if (result.rows.length === 0) {
+    res
+      .status(404)
+      .json({ message: "Todo not found or not owned by the user" });
+    return;
+  }
+
+  const deleteQuery = `
     UPDATE todos
     SET 
       deleted = TRUE,
@@ -93,8 +115,10 @@ export const deleteTodo = async (todo_id: number) => {
     WHERE id = $1
     RETURNING *;
   `;
-  const result = await pool.query(query, [todo_id]);
-  return result.rows[0];
+  const deleteResult = await pool.query(deleteQuery, [todo_id]);
+  return res
+    .status(200)
+    .json({ message: "Todo deleted successfully", todo: deleteResult.rows[0] });
 };
 
 // Service: Update a todo by id

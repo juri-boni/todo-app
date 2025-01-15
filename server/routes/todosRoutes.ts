@@ -14,9 +14,10 @@ const router = Router();
 
 router.get("/todos", verifyToken, checkRole(["admin"]), getTodos);
 
+router.get("/todos/:user_id", verifyToken, checkRole(["user"]), getTodosByUser);
+
 router.post("/todos", verifyToken, checkRole(["user"]), createTodo);
 router.delete("/todos/:id", verifyToken, checkRole(["user"]), removeTodo);
-router.put("/todos/:id", verifyToken, checkRole(["user"]), modifyTodo);
-router.get("/users/:user_id", verifyToken, checkRole(["user"]), getTodosByUser);
+router.put("/todos/:id", modifyTodo);
 
 export default router;

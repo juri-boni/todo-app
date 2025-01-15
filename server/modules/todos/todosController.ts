@@ -65,7 +65,7 @@ export const removeTodo = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
-    const deletedTodo = await deleteTodo(parseInt(id));
+    const deletedTodo = await deleteTodo(req, res, parseInt(id));
     res.json(deletedTodo);
   } catch (error) {
     console.error("Error deleting todo:", error);
