@@ -76,3 +76,17 @@ export const addUser = async (userData: {
     throw new Error("Error creating user.");
   }
 };
+
+export const fetchUsers = async () => {
+  try {
+    const query = `
+      SELECT id, username, email, role, created_at
+      FROM users;
+    `;
+    const result = await pool.query(query);
+    return result.rows;
+  } catch (error) {
+    console.error("Database error in fetchUsers:", error);
+    throw new Error("Database query failed");
+  }
+};

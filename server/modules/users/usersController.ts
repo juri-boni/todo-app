@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { loginUser, addUser } from "./usersService";
+import { loginUser, addUser, fetchUsers } from "./usersService";
 import pool from "../../config/dbConfig";
 
 export const handleLogin = async (req: Request, res: Response) => {
@@ -51,5 +51,15 @@ export const createUser = async (
   } catch (error) {
     console.error("Error creating user: ", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await fetchUsers();
+    res.status(200).json(users);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ error: "Failed to fetch users" });
   }
 };
