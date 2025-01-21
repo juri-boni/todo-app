@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import { useUser } from "../context/userContext";
 import { registerUser } from "../services/usersService";
+import { useUser } from "../context/userContext";
 
 export const Register = () => {
-  // const { setUser } = useUser();
+  const { user, setUser } = useUser();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("user");
+
+  // useEffect(() => {
+  //   console.log("User state updated:", user);
+  // }, [user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,8 +25,10 @@ export const Register = () => {
     };
 
     try {
-      const newUser = await registerUser(userData);
+      const response = await registerUser(userData);
+      const { newUser } = response;
 
+      setUser(newUser);
       console.log("Registration successful:", newUser);
     } catch (error) {
       console.error("Error during registration:", error);
