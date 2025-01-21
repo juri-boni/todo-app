@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 
@@ -13,6 +14,8 @@ import userRoutes from "../routes/usersRoutes";
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 const app = express();
+// Enable CORS for all routes
+app.use(cors());
 const PORT = process.env.PORT || 3000;
 // console.log(process.env.PORT);
 

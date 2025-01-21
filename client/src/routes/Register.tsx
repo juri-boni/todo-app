@@ -10,9 +10,9 @@ export const Register = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("user");
 
-  // useEffect(() => {
-  //   console.log("User state updated:", user);
-  // }, [user]);
+  useEffect(() => {
+    console.log("User:", user);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

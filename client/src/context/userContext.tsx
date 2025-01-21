@@ -1,4 +1,10 @@
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  ReactNode,
+} from "react";
 
 interface User {
   id: number;
@@ -15,8 +21,17 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  // console.log(user);
+  const [user, setUser] = useState<User | null>(() => {
+    // Retrieve user from localStorage on initialization
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  }, [user]); // Update localStorage whenever `user` changes
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
