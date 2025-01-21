@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
+import { useUser } from "../context/userContext";
+import { registerUser } from "../services/usersService";
+
 export const Register = () => {
+  // const { setUser } = useUser();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,21 +21,9 @@ export const Register = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/api/users/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+      const newUser = await registerUser(userData);
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Registration failed");
-      }
-
-      const data = await response.json();
-      console.log("Registration successful:", data);
+      console.log("Registration successful:", newUser);
     } catch (error) {
       console.error("Error during registration:", error);
     }
