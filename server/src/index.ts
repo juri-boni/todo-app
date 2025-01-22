@@ -11,7 +11,7 @@ import userRoutes from "../routes/usersRoutes";
 // const jwtSecret = crypto.randomBytes(64).toString("hex");
 // console.log("jwtSecret ", jwtSecret);
 
-dotenv.config({ path: path.resolve(__dirname, "../../.env") });
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 const app = express();
 // Enable CORS for all routes
