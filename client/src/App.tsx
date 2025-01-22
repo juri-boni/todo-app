@@ -15,7 +15,7 @@ const AppContainer = styled.div`
   align-items: stretch; /* Prevent navbar from being centered */
   min-height: 100vh;
   padding: 0 20px;
-  background-color: ${({ theme }) => theme?.colors?.bg.primary || "#f4f4f9"};
+  background-color: ${({ theme }) => theme?.colors?.bg.primary || "#fff"};
 `;
 
 const MainContent = styled.main`

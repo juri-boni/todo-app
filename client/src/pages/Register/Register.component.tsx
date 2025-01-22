@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { registerUser } from "../../services/usersService";
 import { useUser } from "../../context/userContext";
+import {
+  RegisterContainer,
+  RegisterForm,
+  FormGroup,
+  ErrorMessage,
+  SubmitButton,
+} from "./Register.styles";
 
 export const Register = () => {
   const { setUser } = useUser();
@@ -45,10 +52,9 @@ export const Register = () => {
   };
 
   return (
-    <div className="register-container">
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit} className="register-form">
-        <div className="form-group">
+    <RegisterContainer>
+      <RegisterForm onSubmit={handleSubmit}>
+        <FormGroup>
           <label htmlFor="username">Username:</label>
           <input
             id="username"
@@ -62,8 +68,8 @@ export const Register = () => {
             disabled={isLoading}
             required
           />
-        </div>
-        <div className="form-group">
+        </FormGroup>
+        <FormGroup>
           <label htmlFor="email">Email:</label>
           <input
             id="email"
@@ -77,8 +83,8 @@ export const Register = () => {
             disabled={isLoading}
             required
           />
-        </div>
-        <div className="form-group">
+        </FormGroup>
+        <FormGroup>
           <label htmlFor="password">Password:</label>
           <input
             id="password"
@@ -92,8 +98,8 @@ export const Register = () => {
             disabled={isLoading}
             required
           />
-        </div>
-        <div className="form-group">
+        </FormGroup>
+        <FormGroup>
           <label htmlFor="role">Role:</label>
           <select
             id="role"
@@ -104,20 +110,12 @@ export const Register = () => {
             <option value="user">User</option>
             <option value="admin">Admin</option>
           </select>
-        </div>
-        {error && (
-          <p
-            className="error-message"
-            aria-live="polite"
-            style={{ color: "red" }}
-          >
-            {error}
-          </p>
-        )}
-        <button type="submit" disabled={isLoading}>
+        </FormGroup>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <SubmitButton type="submit" disabled={isLoading}>
           {isLoading ? "Registering..." : "Register"}
-        </button>
-      </form>
-    </div>
+        </SubmitButton>
+      </RegisterForm>
+    </RegisterContainer>
   );
 };

@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { useUser } from "../../context/userContext";
 import { loginUser } from "../../services/usersService";
+import {
+  LoginFormContainer,
+  LoginForm,
+  InputLabelContainer,
+  FormLabel,
+  FormInput,
+  FormButton,
+} from "./Login.styles";
 
 export const Login = () => {
   const { setUser } = useUser();
@@ -28,55 +36,53 @@ export const Login = () => {
       setEmail("");
       setPassword("");
       localStorage.setItem("user", JSON.stringify(loggedUser));
-      console.log("Login successful:", loggedUser);
     } catch (error: any) {
       setError(error.message);
-      console.log("Login Unsuccessfull", error);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleLogin}>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          placeholder="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            if (error) setError(null); // Reset error dynamically
-          }}
-          disabled={isLoading}
-          required
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          placeholder="Enter your password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            if (error) setError(null); // Reset error dynamically
-          }}
-          disabled={isLoading}
-          required
-        />
+    <LoginFormContainer>
+      <LoginForm onSubmit={handleLogin}>
+        <InputLabelContainer>
+          <FormLabel htmlFor="email">Email:</FormLabel>
+          <FormInput
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (error) setError(null);
+            }}
+            disabled={isLoading}
+            required
+          />
+        </InputLabelContainer>
+        <InputLabelContainer>
+          <FormLabel htmlFor="password">Password:</FormLabel>
+          <FormInput
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              if (error) setError(null);
+            }}
+            disabled={isLoading}
+            required
+          />
+        </InputLabelContainer>
         {error && (
-          <p
-            className="error-message"
-            aria-live="polite"
-            style={{ color: "red" }}
-          >
+          <p style={{ color: "red", fontSize: "0.8em", textAlign: "center" }}>
             {error}
           </p>
         )}
-        <button type="submit" disabled={isLoading || !email || !password}>
+        <FormButton type="submit" disabled={isLoading || !email || !password}>
           {isLoading ? "Logging in..." : "Login"}
-        </button>
-      </form>
-    </div>
+        </FormButton>
+      </LoginForm>
+    </LoginFormContainer>
   );
 };

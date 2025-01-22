@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../context/userContext";
 import {
@@ -7,15 +7,10 @@ import {
   LinksContainer,
   LogoutButton,
 } from "./Navbar.styles";
-import "./Navbar.css";
 
 export const Navbar = () => {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log("USER: ", user?.user.username);
-  });
 
   const handleLogout = () => {
     setUser(null); // Clear user context
@@ -35,9 +30,7 @@ export const Navbar = () => {
               <Link to="/profile">Profile</Link>
             </li>
             <li>
-              <LogoutButton onClick={handleLogout} className="logout-button">
-                Logout
-              </LogoutButton>
+              <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
             </li>
           </>
         ) : (
