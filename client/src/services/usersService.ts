@@ -33,3 +33,13 @@ export const loginUser = async (userData: {
     }
   }
 };
+
+export const getAllUsers = async (token: string) => {
+  const response = await axios.get(`${API_URL}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};

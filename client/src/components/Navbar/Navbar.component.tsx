@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../context/userContext";
 import {
@@ -11,6 +11,10 @@ import {
 export const Navbar = () => {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(user.user.role);
+  }, []);
 
   const handleLogout = () => {
     setUser(null); // Clear user context
@@ -26,6 +30,11 @@ export const Navbar = () => {
       <LinksContainer>
         {user ? (
           <>
+            {user?.user?.role === "admin" && (
+              <li>
+                <Link to="/admin">Admin Panel</Link>
+              </li>
+            )}
             <li>
               <Link to="/profile">Profile</Link>
             </li>

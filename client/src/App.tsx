@@ -7,6 +7,7 @@ import { GlobalStyle } from "./styles/global.js";
 import { Login } from "./pages/Login/Login.component.js";
 import { Register } from "./pages/Register/Register.component.js";
 import { Navbar } from "./components/Navbar/Navbar.component.js";
+import { Admin } from "./pages/Admin/Admin.component.js";
 
 const AppContainer = styled.div`
   display: flex;
@@ -38,6 +39,7 @@ function App() {
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/admin" element={<Admin />} />
             </Routes>
           </MainContent>
         </AppContainer>
