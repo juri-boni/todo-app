@@ -34,12 +34,32 @@ export const loginUser = async (userData: {
   }
 };
 
-export const getAllUsers = async (token: string) => {
-  const response = await axios.get(`${API_URL}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+// export const getAllUsers = async (token: string) => {
+//   const response = await axios.get(`${API_URL}`, {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   });
 
-  return response.data;
+//   return response.data;
+// };
+
+export const getAllUsers = async (token: string) => {
+  try {
+    const response = await fetch(`${API_URL}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch users: ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw error;
+  }
 };

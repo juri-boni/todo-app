@@ -6,16 +6,17 @@ import { AdminContainer, Sidebar, UsersTable } from "./Admin.styles";
 
 export const Admin = () => {
   const { user, setUser } = useUser();
+  const { token } = useUser();
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const token = user?.token;
+    // const token = user?.token;
     const fetchUsers = async () => {
       setIsLoading(true);
       try {
-        const response = await getAllUsers(token);
+        const response = await getAllUsers(token ?? "");
         setUsers(response);
       } catch (err) {
         setError("Failed to fetch users.");
@@ -25,7 +26,7 @@ export const Admin = () => {
       }
     };
     fetchUsers();
-  }, [user?.token]);
+  }, [user, token]);
 
   return (
     <AdminContainer>

@@ -16,6 +16,8 @@ interface User {
 interface UserContextType {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  token: string | undefined;
+  setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -27,14 +29,29 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
+  const [token, setToken] = useState<string | undefined>(() => {
+    // Retrieve token from localStorage on initialization
+    return localStorage.getItem("token") || undefined;
+  });
+
   useEffect(() => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
     }
   }, [user]); // Update localStorage whenever `user` changes
 
+  useEffect(() => {
+    if (token) {
+      // Store token in localStorage when it changes
+      localStorage.setItem("token", token);
+    } else {
+      // Remove token from localStorage when it's undefined
+      localStorage.removeItem("token");
+    }
+  }, [token]);
+
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, token, setToken }}>
       {children}
     </UserContext.Provider>
   );

@@ -36,7 +36,7 @@ export const Register = () => {
       const { newUser } = response;
 
       setUser(newUser);
-      console.log("Registration successful:", newUser);
+      // setUser(response);
 
       // Clear fields after success
       setUsername("");

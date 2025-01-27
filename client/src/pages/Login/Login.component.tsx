@@ -12,6 +12,7 @@ import {
 
 export const Login = () => {
   const { setUser } = useUser();
+  const { setToken } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -32,8 +33,11 @@ export const Login = () => {
 
     try {
       const loggedUser = await loginUser(userData);
-      console.log("LOGIN ---- USER DATA", loggedUser);
-      setUser(loggedUser);
+      const { token, user } = loggedUser;
+      // console.log("token ---- USER DATA", token);
+      // console.log("user ---- USER DATA", user);
+      setUser(user);
+      setToken(token);
       setEmail("");
       setPassword("");
       localStorage.setItem("user", JSON.stringify(loggedUser));

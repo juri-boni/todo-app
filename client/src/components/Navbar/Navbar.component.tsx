@@ -10,11 +10,14 @@ import {
 
 export const Navbar = () => {
   const { user, setUser } = useUser();
+  // const { token, setToken } = useUser();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(user.user.role);
-  }, []);
+  // useEffect(() => {
+  //   console.log(user);
+  //   console.log(token);
+  //   // console.log("USER ==== " + user?.user.username);
+  // }, []);
 
   const handleLogout = () => {
     setUser(null); // Clear user context
@@ -30,14 +33,16 @@ export const Navbar = () => {
       <LinksContainer>
         {user ? (
           <>
-            {user?.user?.role === "admin" && (
+            {user?.role === "admin" && (
               <li>
                 <Link to="/admin">Admin Panel</Link>
               </li>
             )}
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
+            {user?.role === "user" && (
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+            )}
             <li>
               <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
             </li>
