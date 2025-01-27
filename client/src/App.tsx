@@ -3,6 +3,7 @@
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import { UserProvider } from "./context/userContext.js";
+import { TodosProvider } from "./context/todosContext.js";
 import { GlobalStyle } from "./styles/global.js";
 import { Login } from "./pages/Login/Login.component.js";
 import { Register } from "./pages/Register/Register.component.js";
@@ -31,20 +32,22 @@ function App() {
   return (
     <>
       <UserProvider>
-        <GlobalStyle />
-        <AppContainer>
-          <header>
-            <Navbar></Navbar>
-          </header>
-          <MainContent>
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/profile" element={<User />} />
-            </Routes>
-          </MainContent>
-        </AppContainer>
+        <TodosProvider>
+          <GlobalStyle />
+          <AppContainer>
+            <header>
+              <Navbar></Navbar>
+            </header>
+            <MainContent>
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/profile" element={<User />} />
+              </Routes>
+            </MainContent>
+          </AppContainer>
+        </TodosProvider>
       </UserProvider>
     </>
   );

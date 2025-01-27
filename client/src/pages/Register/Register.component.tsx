@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { registerUser } from "../../services/usersService";
-import { useUser } from "../../context/userContext";
+// import { useUser } from "../../context/userContext";
+import { useUser } from "../../hooks/useUser";
 import {
   RegisterContainer,
   RegisterForm,

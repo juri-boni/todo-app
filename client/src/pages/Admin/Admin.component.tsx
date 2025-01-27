@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useUser } from "../../context/userContext";
+// import { useUser } from "../../context/userContext";
+import { useUser } from "../../hooks/useUser";
 import { User } from "../../types/types";
 import { getAllUsers } from "../../services/usersService";
 import { AdminContainer, Sidebar, UsersTable } from "./Admin.styles";

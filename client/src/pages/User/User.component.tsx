@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-import { useUser } from "../../context/userContext";
+// import { useUser } from "../../context/userContext";
+import { useUser } from "../../hooks/useUser";
+import { useTodos } from "../../hooks/useTodos";
 import { getAllTodos } from "../../services/todosService";
 import { UserContainer, UserSidebar } from "./User.styles";
 
 export const User = () => {
-  const [todos, setTodos] = useState([]);
+  // const [todos, setTodos] = useState([]);
   const { token } = useUser();
   const { user } = useUser();
+  const { todos, setTodos } = useTodos();
 
   useEffect(() => {
     // console.log(user.id);
@@ -15,9 +18,9 @@ export const User = () => {
 
     const fetchTodos = async () => {
       try {
-        const todos = await getAllTodos(token ?? "", user.id);
-        console.log(todos);
-        setTodos(todos);
+        const fetchedTodos = await getAllTodos(token ?? "", user.id);
+        console.log(fetchedTodos);
+        setTodos(fetchedTodos);
       } catch (error) {
         console.error(error);
       }
