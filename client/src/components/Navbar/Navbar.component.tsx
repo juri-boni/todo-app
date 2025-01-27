@@ -10,19 +10,12 @@ import {
 
 export const Navbar = () => {
   const { user, setUser } = useUser();
-  // const { token, setToken } = useUser();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   console.log(user);
-  //   console.log(token);
-  //   // console.log("USER ==== " + user?.user.username);
-  // }, []);
-
   const handleLogout = () => {
-    setUser(null); // Clear user context
-    localStorage.removeItem("user"); // Remove user from localStorage
-    navigate("/login"); // Redirect to login page
+    setUser(null);
+    localStorage.removeItem("user");
+    navigate("/login");
   };
 
   return (

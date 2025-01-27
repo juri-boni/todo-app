@@ -8,6 +8,7 @@ import { Login } from "./pages/Login/Login.component.js";
 import { Register } from "./pages/Register/Register.component.js";
 import { Navbar } from "./components/Navbar/Navbar.component.js";
 import { Admin } from "./pages/Admin/Admin.component.js";
+import { User } from "./pages/User/User.component.js";
 
 const AppContainer = styled.div`
   display: flex;
@@ -40,6 +41,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/profile" element={<User />} />
             </Routes>
           </MainContent>
         </AppContainer>

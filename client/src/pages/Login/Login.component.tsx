@@ -34,8 +34,7 @@ export const Login = () => {
     try {
       const loggedUser = await loginUser(userData);
       const { token, user } = loggedUser;
-      // console.log("token ---- USER DATA", token);
-      // console.log("user ---- USER DATA", user);
+
       setUser(user);
       setToken(token);
       setEmail("");

@@ -21,14 +21,12 @@ export const verifyToken = async (
   res: Response,
   next: NextFunction
 ) => {
-  // console.log("HEADERS *** ", req.headers);
   const authorization = req.headers.authorization;
-  // console.log(authorization?.startsWith("Bearer"));
 
   if (!authorization || !authorization?.startsWith("Bearer")) {
     // res.status(401).json({ message: "No authorization in Headers" });
     sendError(res, 401, "No authorization in Headers");
-    // console.log("No authorization in Headers");
+
     return;
   }
 
