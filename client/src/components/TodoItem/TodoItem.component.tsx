@@ -1,7 +1,16 @@
 import React from "react";
-import { TodoItemContainer, TodoText, TodoElement } from "./TodoItem.styles";
+import { deleteTodo } from "../../services/todosService";
+import { useUser } from "../../hooks/useUser";
+import {
+  TodoContainer,
+  TodoItemContainer,
+  TodoText,
+  TodoElement,
+  DeleteButton,
+} from "./TodoItem.styles";
 
 export const TodoItem = ({ todo }) => {
+  const { token } = useUser();
   // const todoId = todo.id;
   const {
     id,
@@ -19,15 +28,36 @@ export const TodoItem = ({ todo }) => {
     tags,
   } = todo;
 
+  const handleDelete = async () => {
+    console.log("deleting todo ", id);
+    try {
+      const response = await deleteTodo(token ?? "", id);
+      console.log("DELETING TODO: REPONSE = ", response);
+    } catch (error) {
+      console.error("error trying to delete a todo ", error);
+    }
+  };
+
   return (
-    <TodoItemContainer key={id}>
-      <TodoText> {title}</TodoText>
-      <TodoElement>DESCRIPTION: {description}</TodoElement>
-      <TodoElement>CREATED BY: {created_by}</TodoElement>
-      <TodoElement>{completed ? "completed" : "to be completed"} </TodoElement>
-      <TodoElement>NOTES: {notes}</TodoElement>
-      <TodoElement>PRIORITY: {priority} </TodoElement>
-      <TodoElement>{deleted ? "deleted" : "active"}</TodoElement>
-    </TodoItemContainer>
+    <TodoContainer>
+      <TodoItemContainer key={id} deleted={deleted}>
+        <TodoText> {title}</TodoText>
+        <TodoElement>DESCRIPTION: {description}</TodoElement>
+        <TodoElement>CREATED BY: {created_by}</TodoElement>
+        <TodoElement>
+          {completed ? "completed" : "to be completed"}{" "}
+        </TodoElement>
+        <TodoElement>NOTES: {notes}</TodoElement>
+        <TodoElement>PRIORITY: {priority} </TodoElement>
+        <TodoElement>{deleted ? "deleted" : "active"}</TodoElement>
+      </TodoItemContainer>
+      {!deleted && (
+        <DeleteButton onClick={() => handleDelete()} deleted={deleted}>
+          Delete Todo
+        </DeleteButton>
+      )}
+
+      {deleted && <DeleteButton deleted={deleted}>Recover Todo</DeleteButton>}
+    </TodoContainer>
   );
 };

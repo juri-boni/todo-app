@@ -38,6 +38,29 @@ export const createTodo = async (
   }
 };
 
+export const deleteTodo = async (token: string, todoId: number) => {
+  console.log("SERVICE: trying to delete todo");
+  try {
+    const response = await fetch(`${API_URL_TODOS}/${todoId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log(response);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch todos: ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching todos:", error);
+    throw error;
+  }
+};
+
 export const getAllTodos = async (token: string, userId: number) => {
   console.log("GETTING TODOS with token ", token);
 
