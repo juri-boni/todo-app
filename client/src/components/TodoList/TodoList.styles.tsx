@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ListContainer = styled.ul`
+  width: 85vw;
   list-style-type: none;
   padding: 2rem;
   margin: 2rem;

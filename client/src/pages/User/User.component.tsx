@@ -42,7 +42,7 @@ export const User = () => {
       {/* {isLoading && <p>Loading users...</p>}
        {error && <p className="error">{error}</p>} */}
       <div>
-        <h2>All Todos</h2>
+        <h2>My Todo List</h2>
 
         <TodoList></TodoList>
       </div>
