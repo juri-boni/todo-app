@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { useUser } from "../../context/userContext";
+
 import { useUser } from "../../hooks/useUser";
 import {
   NavigationContainer,
   LogoContainer,
   LinksContainer,
   LogoutButton,
+  UserName,
 } from "./Navbar.styles";
 
 export const Navbar = () => {
@@ -25,6 +26,7 @@ export const Navbar = () => {
         <Link to="/">Todo App</Link>
       </LogoContainer>
       <LinksContainer>
+        {user && <UserName>{user.username}</UserName>}
         {user ? (
           <>
             {user?.role === "admin" && (

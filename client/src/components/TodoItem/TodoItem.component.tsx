@@ -2,7 +2,7 @@ import React from "react";
 import { TodoItemContainer, TodoText, TodoElement } from "./TodoItem.styles";
 
 export const TodoItem = ({ todo }) => {
-  const todoId = todo.id;
+  // const todoId = todo.id;
   const {
     id,
     title,
@@ -19,15 +19,15 @@ export const TodoItem = ({ todo }) => {
     tags,
   } = todo;
 
-  console.log(tags);
   return (
-    <TodoItemContainer key={todoId}>
-      <TodoText>{title} - </TodoText>
-      <TodoElement>{description}- </TodoElement>
-      <TodoElement>{completed ? "completed" : "to be completed"}- </TodoElement>
-      <TodoElement>{notes} - </TodoElement>
-      <TodoElement>PRIORITY {priority} - </TodoElement>
-      <TodoElement>{deleted ? "deleted" : "active"}- </TodoElement>
+    <TodoItemContainer key={id}>
+      <TodoText> {title}</TodoText>
+      <TodoElement>DESCRIPTION: {description}</TodoElement>
+      <TodoElement>CREATED BY: {created_by}</TodoElement>
+      <TodoElement>{completed ? "completed" : "to be completed"} </TodoElement>
+      <TodoElement>NOTES: {notes}</TodoElement>
+      <TodoElement>PRIORITY: {priority} </TodoElement>
+      <TodoElement>{deleted ? "deleted" : "active"}</TodoElement>
     </TodoItemContainer>
   );
 };

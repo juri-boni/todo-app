@@ -33,6 +33,12 @@ export const LinksContainer = styled.ul`
   }
 `;
 
+export const UserName = styled.span`
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #726;
+`;
+
 export const LogoutButton = styled.button`
   align-self: center; /* Centered button */
   width: auto; /* No full width */
