@@ -4,7 +4,7 @@ export const getAllTodos = async (token: string, userId: number) => {
   console.log("GETTING TODOS with token ", token);
 
   try {
-    const response = await fetch(`http://localhost:3000/api/todos/15`, {
+    const response = await fetch(`${API_URL_TODOS}/${userId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

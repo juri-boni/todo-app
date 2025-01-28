@@ -5,6 +5,7 @@ import { useUser } from "../../hooks/useUser";
 import { useTodos } from "../../hooks/useTodos";
 import { getAllTodos } from "../../services/todosService";
 import { UserContainer, UserSidebar } from "./User.styles";
+import { TodoList } from "../../components/TodoList/TodoList.component";
 
 export const User = () => {
   // const [todos, setTodos] = useState([]);
@@ -41,14 +42,9 @@ export const User = () => {
       {/* {isLoading && <p>Loading users...</p>}
        {error && <p className="error">{error}</p>} */}
       <div>
-        <h2>All Users</h2>
+        <h2>All Todos</h2>
 
-        <div>
-          {todos.map((todo) => {
-            const todoId = todo.id; // Declare the id variable
-            return <p key={todoId}>{todo.title}</p>; // Use the variable as the key
-          })}
-        </div>
+        <TodoList></TodoList>
       </div>
     </UserContainer>
   );
