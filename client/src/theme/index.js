@@ -10,7 +10,7 @@ export const themes = {
     sizes,
     fonts: fonts, // Access all font properties
   },
-  ligth: {
+  light: {
     colors: lightTheme,
     spacing,
     sizes,

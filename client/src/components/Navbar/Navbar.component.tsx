@@ -1,6 +1,4 @@
-// import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { useUser } from "../../hooks/useUser";
 import {
   NavigationContainer,
@@ -26,19 +24,17 @@ export const Navbar = () => {
         <Link to="/">Todo App</Link>
       </LogoContainer>
       <LinksContainer>
-        {user && <UserName>{user.username}</UserName>}
         {user ? (
           <>
-            {user?.role === "admin" && (
+            <UserName>{user.username}</UserName>
+            {user.role === "admin" && (
               <li>
                 <Link to="/admin">Admin Panel</Link>
               </li>
             )}
-            {user?.role === "user" && (
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
-            )}
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
             <li>
               <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
             </li>
