@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+import {
+  getColor,
+  getFont,
+  getSpacing,
+  getSize,
+} from "../../utils/themeHelpers";
+
 export const AdminContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -7,36 +14,44 @@ export const AdminContainer = styled.div`
   background-color: #fff;
   height: 100vh;
   width: 100vw;
-  padding: 0, 10em, 0, 10em;
+  padding: 0, 10rem, 0, 10rem;
 `;
 
 export const Sidebar = styled.aside`
   width: 18%;
-  background-color: #f4f4f4;
-  padding: 2rem;
-  border-right: 1px solid #ddd;
+  background-color: ${getColor("bg.primary")};
+  padding: ${getSpacing("padding.large")};
+  border-right: 1px solid ${getColor("border.primary")};
 
   h3 {
-    margin-bottom: 1rem;
+    margin-bottom: ${getSpacing("margin.large")};
+    font-size: ${getFont("fontSizes.large")};
   }
 
   ul {
     list-style: none;
-    padding: 0;
+    padding: ${getSpacing("padding.none")};
 
     li {
-      margin: 0.5rem 0;
+      margin-bottom: ${getSpacing("margin.medium")};
       cursor: pointer;
+      font-size: ${getFont("fontSizes.small")};
+      color: ${getColor("text.secondary")};
+
+      &:hover {
+        color: ${getColor("text.primary")};
+      }
     }
   }
 `;
 
 export const UsersTable = styled.div`
   flex: 1;
-  padding: 2rem;
+  padding: ${getSpacing("padding.large")};
+  background-color: ${getColor("bg.primary")};
 
   h2 {
-    margin-bottom: 1rem;
+    margin-bottom: ${getSpacing("margin.small")};
   }
 
   table {
@@ -45,13 +60,33 @@ export const UsersTable = styled.div`
 
     th,
     td {
-      border: 1px solid #ddd;
-      padding: 0.5rem;
+      border: 1px solid ${getColor("border.primary")};
+      padding: ${getSpacing("padding.xsmall")};
       text-align: left;
     }
 
     th {
-      background-color: #f4f4f4;
+      background-color: ${getColor("bg.alternative")};
+      font-size: ${getFont("fontSizes.small")};
     }
+
+    td {
+      font-size: ${getFont("fontSizes.xsmall")};
+    }
+  }
+`;
+
+export const ThemeToggleButton = styled.button`
+  background-color: ${getColor("ui.primary")};
+  color: ${getColor("text.primary")};
+  padding: ${getSpacing(["padding.xsmall", "padding.medium"])};
+  margin-bottom: ${getSpacing("margin.large")};
+  border: none;
+  cursor: pointer;
+  border-radius: ${getSize("borderRadius.medium")};
+  font-size: ${getFont("fontSizes.xsmall")};
+
+  &:hover {
+    background-color: ${getColor("ui.secondary")};
   }
 `;

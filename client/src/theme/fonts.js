@@ -6,6 +6,7 @@ export const fonts = {
 
   // Font sizes
   fontSizes: {
+    xxsmall: "1 rem", // 10px
     xsmall: "1.3rem", // 13px
     small: "1.4rem", // 14px
     medium: "1.6rem", // 16px
@@ -20,6 +21,7 @@ export const fonts = {
     light: 300,
     normal: 400,
     medium: 500,
+    mediumBold: 600,
     bold: 700,
     extraBold: 800, // New
   },

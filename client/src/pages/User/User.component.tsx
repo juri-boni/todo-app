@@ -1,50 +1,48 @@
-import React, { useState, useEffect } from "react";
-
-// import { useUser } from "../../context/userContext";
+import React, { useEffect } from "react";
 import { useUser } from "../../hooks/useUser";
 import { useTodos } from "../../hooks/useTodos";
 import { getAllTodos } from "../../services/todosService";
-import { UserContainer, UserSidebar } from "./User.styles";
+import { UserContainer, UserSidebar, ThemeToggleButton } from "./User.styles";
 import { TodoList } from "../../components/TodoList/TodoList.component";
 
-export const User = () => {
-  // const [todos, setTodos] = useState([]);
-  const { token } = useUser();
-  const { user } = useUser();
+export const User = ({ theme, setTheme, toggleTheme }) => {
+  const { token, user } = useUser(); // Single call to useUser()
   const { todos, setTodos } = useTodos();
+  useEffect(() => {
+    console.log("USER - theme = ", theme);
+  }, [theme]);
 
   useEffect(() => {
-    // console.log(user.id);
-    // const userId = user.id;
+    if (!token || !user?.id) return; // Prevent running if user/token is missing
 
     const fetchTodos = async () => {
       try {
-        const fetchedTodos = await getAllTodos(token ?? "", user.id);
+        const fetchedTodos = await getAllTodos(token, user.id);
         console.log(fetchedTodos);
         setTodos(fetchedTodos);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching todos:", error);
       }
     };
+
     fetchTodos();
-  }, []);
+  }, [token, user?.id]); // Added dependencies
 
   return (
     <UserContainer>
-      {/* <h3>USER PAGE</h3> */}
       <UserSidebar>
         <ul>
+          <ThemeToggleButton onClick={toggleTheme}>
+            {theme === "dark" ? "Light" : "Dark"}
+          </ThemeToggleButton>
           <li>Info</li>
           <li>Settings</li>
           <li>Logout</li>
         </ul>
       </UserSidebar>
-      {/* {isLoading && <p>Loading users...</p>}
-       {error && <p className="error">{error}</p>} */}
       <div>
-        <h2>My Todo List</h2>
-
-        <TodoList></TodoList>
+        {/* <h2>My Todo List</h2> */}
+        <TodoList />
       </div>
     </UserContainer>
   );

@@ -1,32 +1,61 @@
 import styled from "styled-components";
+import {
+  getColor,
+  getSpacing,
+  getFont,
+  getSize,
+} from "../../utils/themeHelpers";
 
 export const UserContainer = styled.div`
   display: flex;
   flex-direction: row;
   /* justify-content: space-between; */
-  background-color: #fff;
+  background-color: ${getColor("bg.primary")};
   height: 100vh;
   width: 100vw;
-  padding: 0, 10em, 0, 10em;
+  padding-left: ${getSpacing("padding.medium")};
+  padding-right: ${getSpacing("padding.medium")};
 `;
 
 export const UserSidebar = styled.aside`
   width: 18%;
-  background-color: #f4f4f4;
-  padding: 2rem;
-  border-right: 1px solid #ddd;
+  background-color: ${getColor("bg.primary")};
+  padding: ${getSpacing("padding.large")};
+  border-right: 1px solid ${getColor("border.primary")};
 
   h3 {
-    margin-bottom: 1rem;
+    margin-bottom: ${getSpacing("margin.large")};
+    font-size: ${getFont("fontSizes.large")};
   }
 
   ul {
     list-style: none;
-    padding: 0;
+    padding: ${getSpacing("padding.none")};
 
     li {
-      margin: 0.5rem 0;
+      margin-bottom: ${getSpacing("margin.medium")};
       cursor: pointer;
+      font-size: ${getFont("fontSizes.small")};
+      color: ${getColor("text.secondary")};
+
+      &:hover {
+        color: ${getColor("text.primary")};
+      }
     }
+  }
+`;
+
+export const ThemeToggleButton = styled.button`
+  background-color: ${getColor("ui.primary")};
+  color: ${getColor("text.primary")};
+  padding: ${getSpacing(["padding.xsmall", "padding.medium"])};
+  margin-bottom: ${getSpacing("margin.large")};
+  border: none;
+  cursor: pointer;
+  border-radius: ${getSize("borderRadius.medium")};
+  font-size: ${getFont("fontSizes.xsmall")};
+
+  &:hover {
+    background-color: ${getColor("ui.secondary")};
   }
 `;

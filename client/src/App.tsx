@@ -28,20 +28,20 @@ const MainContent = styled.main`
   flex-grow: 1;
 `;
 
-const ThemeToggleButton = styled.button`
-  background-color: ${({ theme }) => theme?.colors?.ui.primary || "#333"};
-  color: ${({ theme }) => theme?.colors?.text.primary || "#fff"};
-  padding: 0.8rem 1.6rem;
-  border: none;
-  cursor: pointer;
-  margin: 1rem 0;
-  border-radius: 0.4rem;
-  font-size: ${({ theme }) => theme?.fonts.fontSizes.medium || "16px"};
+// const ThemeToggleButton = styled.button`
+//   background-color: ${({ theme }) => theme?.colors?.ui.primary || "#333"};
+//   color: ${({ theme }) => theme?.colors?.text.primary || "#fff"};
+//   padding: 0.8rem 1.6rem;
+//   border: none;
+//   cursor: pointer;
+//   margin: 1rem 0;
+//   border-radius: 0.4rem;
+//   font-size: ${({ theme }) => theme?.fonts.fontSizes.medium || "16px"};
 
-  &:hover {
-    background-color: ${({ theme }) => theme?.colors?.ui.secondary || "#555"};
-  }
-`;
+//   &:hover {
+//     background-color: ${({ theme }) => theme?.colors?.ui.secondary || "#555"};
+//   }
+// `;
 
 function App() {
   // Check localStorage for the theme on initial load
@@ -65,17 +65,35 @@ function App() {
           <GlobalStyle />
           <AppContainer>
             <header>
-              <Navbar />
+              <Navbar theme={theme} setTheme={setTheme} />
             </header>
             <MainContent>
-              <ThemeToggleButton onClick={toggleTheme}>
+              {/* <ThemeToggleButton onClick={toggleTheme}>
                 Switch to {theme === "dark" ? "Light" : "Dark"} Mode
-              </ThemeToggleButton>
+              </ThemeToggleButton> */}
               <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/profile" element={<User />} />
+                <Route
+                  path="/admin"
+                  element={
+                    <Admin
+                      theme={theme}
+                      setTheme={setTheme}
+                      toggleTheme={toggleTheme}
+                    />
+                  }
+                />
+                <Route
+                  path="/profile"
+                  element={
+                    <User
+                      theme={theme}
+                      setTheme={setTheme}
+                      toggleTheme={toggleTheme}
+                    />
+                  }
+                />
               </Routes>
             </MainContent>
           </AppContainer>

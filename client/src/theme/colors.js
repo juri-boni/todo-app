@@ -29,6 +29,7 @@ export const lightTheme = {
   text: {
     primary: "#212121",
     secondary: "#757575",
+    tertiary: "#A1A1A1",
     disabled: "#BDBDBD",
     inverse: "#FFFFFF",
     error: "#FF3B30",
@@ -36,6 +37,8 @@ export const lightTheme = {
   },
   border: {
     primary: "#E0E0E0",
+    secondary: "#BDBDBD",
+    tertiary: "#989898",
     focused: "#007AFF",
     error: "#FF3B30",
     muted: "#BDBDBD",
@@ -80,6 +83,7 @@ export const darkTheme = {
   text: {
     primary: "#FFFFFF",
     secondary: "#A1A1A1",
+    tertiary: "#777777",
     disabled: "#8E8E93",
     inverse: "#000000",
     error: "#FF453A",
@@ -87,6 +91,8 @@ export const darkTheme = {
   },
   border: {
     primary: "#3A3A3C",
+    secondary: "#48484A",
+    tertiary: "#78787A",
     focused: "#0A84FF",
     error: "#FF453A",
     muted: "#48484A",
@@ -94,7 +100,7 @@ export const darkTheme = {
   shadow: {
     light: "0 1px 3px rgba(255, 255, 255, 0.1)",
     medium: "0 2px 6px rgba(255, 255, 255, 0.15)",
-    heavy: "0 4px 8px rgba(255, 255, 255, 0.2)",
+    heavy: "0 4px 8px rgba(255, 255, 255, 0.25)",
     lightGlow: "0 0 10px 2px rgba(255, 255, 255, 0.2)",
     darkGlow: "0 0 10px 2px rgba(10, 132, 255, 0.4)",
   },

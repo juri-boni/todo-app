@@ -60,7 +60,7 @@ export const Register = () => {
           <input
             id="username"
             type="text"
-            placeholder="Enter your username"
+            placeholder="How should I call you?"
             value={username}
             onChange={(e) => {
               setUsername(e.target.value);
@@ -75,7 +75,7 @@ export const Register = () => {
           <input
             id="email"
             type="email"
-            placeholder="Enter your email"
+            placeholder="Tell me your email"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -90,7 +90,7 @@ export const Register = () => {
           <input
             id="password"
             type="password"
-            placeholder="Enter your password"
+            placeholder="For the love of God, try not to use 'password'"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);

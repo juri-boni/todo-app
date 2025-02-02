@@ -1,70 +1,84 @@
 import styled from "styled-components";
 
+import {
+  getColor,
+  getSize,
+  getSpacing,
+  getFont,
+} from "../../utils/themeHelpers";
+
 export const RegisterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 400px;
+  max-width: ${getSize("width.immense")};
+  min-width: ${getSize("width.ultra")};
   margin: 0 auto;
-  padding: 2rem;
-  background-color: #f2f2f2; /* Light grey */
-  border: 1px solid #ddd; /* Subtle border */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  margin-top: 10em;
+  padding: ${getSpacing("padding.xlarge")};
+  background-color: ${getColor("bg.primary")};
+  border: 1px solid ${getColor("border.primary")};
+  border-radius: ${getSize("borderRadius.medium")};
+  box-shadow: ${getColor("shadow.darkGlow")};
+  margin-top: ${getSpacing("margin.mega")};
 `;
 
 export const RegisterForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: ${getSpacing("gap.medium")};
 `;
 
 export const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: ${getSpacing("gap.small")};
 
   label {
-    font-size: 0.9rem;
-    color: #333; /* Dark grey */
+    font-size: ${getFont("fontSizes.xsmall")};
+    color: ${getColor("text.secondary")};
   }
 
   input,
   select {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: ${getSpacing("padding.small")};
+    font-size: ${getFont("fontSizes.small")};
+    border: 1px solid ${getColor("border.tertiary")};
+    background-color: ${getColor("bg.alternative")};
+    border-radius: ${getSize("borderRadius.medium")};
+  }
+
+  input:active,
+  input:focus {
+    border: 1px solid ${getColor("border.focused")};
   }
 
   input:disabled,
   select:disabled {
-    background-color: #e9e9e9; /* Slightly darker grey for disabled fields */
+    background-color: ${getColor("bg.muted")};
   }
 `;
 
 export const ErrorMessage = styled.p`
-  color: #d9534f; /* Red for errors */
-  font-size: 0.9rem;
+  color: ${getColor("text.error")};
+  font-size: ${getFont("fontSizes.small")};
   text-align: center;
 `;
 
 export const SubmitButton = styled.button`
-  align-self: center; /* Centered button */
-  width: auto; /* No full width */
-  padding: 0.6em 1.5em;
-  font-size: 0.9em;
-  color: #fff;
-  background-color: #555; /* Medium gray */
+  align-self: center;
+  width: auto;
+  padding: ${getSpacing(["padding.mediumSmall", "padding.medium"])};
+  font-size: ${getFont("fontSizes.small")};
+  color: ${getColor("text.primary")};
+  background-color: ${getColor("bg.alternative")};
   border: none;
   border-radius: 0.3em;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:disabled {
-    background-color: #c8e6c9; /* Lighter green for disabled state */
+    background-color: ${getColor("bg.muted")};
     cursor: not-allowed;
   }
 `;

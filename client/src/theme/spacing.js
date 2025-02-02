@@ -11,6 +11,7 @@ export const spacing = {
     xxlarge: "4.8rem", // 48px
     xxxlarge: "6.4rem", // 64px
     huge: "8rem", // 80px (New)
+    mega: "9.6rem", // 96px (New)
   },
 
   // Padding Sizes
@@ -19,12 +20,14 @@ export const spacing = {
     xxsmall: "0.2rem",
     xsmall: "0.4rem",
     small: "0.8rem",
+    mediumSmall: "1.2rem",
     medium: "1.6rem",
     large: "2.4rem",
     xlarge: "3.2rem",
     xxlarge: "4.8rem",
     xxxlarge: "6.4rem",
     huge: "8rem",
+    mega: "9.6rem", // 96px (New)
   },
 
   // Gap Sizes for Grid or Flex
@@ -39,5 +42,6 @@ export const spacing = {
     xxlarge: "4.8rem",
     xxxlarge: "6.4rem",
     huge: "8rem",
+    mega: "9.6rem", // 96px (New)
   },
 };

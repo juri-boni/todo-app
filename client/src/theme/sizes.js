@@ -1,5 +1,4 @@
 export const sizes = {
-  // Breakpoints
   breakpoints: {
     mobileS: "32rem",
     mobileM: "37.5rem",
@@ -8,10 +7,9 @@ export const sizes = {
     laptop: "64rem",
     desktop: "90rem",
     wideScreen: "120rem",
-    xxlarge: "160rem", // New for ultra-wide screens
+    xxlarge: "160rem",
   },
 
-  // Spacing Sizes (same as before)
   spacing: {
     none: "0",
     xsmall: "0.4rem",
@@ -23,7 +21,6 @@ export const sizes = {
     xxxlarge: "6.4rem",
   },
 
-  // Container Sizes
   container: {
     xsmall: "20rem",
     small: "30rem",
@@ -34,7 +31,6 @@ export const sizes = {
     fullWidth: "100%",
   },
 
-  // Input Sizes (same as before)
   input: {
     xsmall: "1.2rem",
     small: "1.4rem",
@@ -44,21 +40,50 @@ export const sizes = {
     xxlarge: "3.0rem",
   },
 
-  // Border Radius Sizes (same as before)
   borderRadius: {
     none: "0",
     small: "0.2rem",
     medium: "0.4rem",
+    mediumLarge: "0.6rem",
     large: "0.8rem",
     full: "50%",
   },
 
-  // Icon Sizes (same as before)
   icon: {
     xsmall: "1.2rem",
     small: "1.6rem",
     medium: "2.0rem",
     large: "2.4rem",
     xlarge: "3.2rem",
+  },
+
+  height: {
+    none: "0",
+    xsmall: "0.4rem",
+    small: "0.8rem",
+    medium: "1.6rem",
+    large: "2.4rem",
+    xlarge: "3.2rem",
+    xxlarge: "4.8rem",
+    xxxlarge: "6.4rem",
+    mega: "12.8rem",
+    huge: "25.6rem",
+    ultra: "48rem",
+    immense: "96rem",
+  },
+
+  width: {
+    none: "0",
+    xsmall: "0.4rem",
+    small: "0.8rem",
+    medium: "1.6rem",
+    large: "2.4rem",
+    xlarge: "3.2rem",
+    xxlarge: "4.8rem",
+    xxxlarge: "6.4rem",
+    mega: "12.8rem",
+    huge: "25.6rem",
+    ultra: "48rem",
+    immense: "96rem",
   },
 };

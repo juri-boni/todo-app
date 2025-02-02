@@ -1,31 +1,37 @@
 import styled from "styled-components";
 
+import {
+  getColor,
+  getSize,
+  getSpacing,
+  getFont,
+} from "../../utils/themeHelpers";
+
 export const NavigationContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: ${({ theme }) => theme.spacing.padding.small}
-    ${({ theme }) => theme.spacing.padding.large};
-  background-color: ${({ theme }) => theme.colors.bg.primary};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border.primary};
-  height: 4rem;
+  padding: ${getSpacing(["padding.xlarge", "padding.medium"])};
+  background-color: ${getColor("bg.primary")};
+  border-bottom: 1px solid ${getColor("border.primary")};
+  height: ${getSize("height.xxlarge")};
 `;
 
 export const LogoContainer = styled.div`
   a {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.text.primary};
-    font-size: ${({ theme }) => theme.fonts.fontSizes.medium};
-    font-weight: bold;
+    color: ${getColor("text.primary")};
+    font-size: ${getFont("fontSizes.medium")};
+    font-weight: ${getFont("fontWeights.medium")};
   }
 `;
 
 export const LinksContainer = styled.ul`
   list-style: none;
   display: flex;
-  gap: ${({ theme }) => theme.spacing.gap.medium};
-  margin: 0;
-  padding: 0;
+  gap: ${getSpacing("gap.medium")};
+  margin: ${getSpacing("margin.none")};
+  padding: ${getSpacing("padding.none")};
   align-items: center; // Ensures vertical alignment of the items
 
   li {
@@ -35,28 +41,42 @@ export const LinksContainer = styled.ul`
 
   a {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.text.primary};
-    font-size: ${({ theme }) => theme.fonts.fontSizes.small};
+    color: ${getColor("text.primary")};
+    font-size: ${getFont("fontSizes.small")};
   }
 `;
 
 export const UserName = styled.span`
-  font-size: ${({ theme }) => theme.fonts.fontSizes.small};
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.text.secondary};
+  font-size: ${getFont("fontSizes.small")};
+  font-weight: ${getFont("fontWeights.medium")};
+  color: ${getColor("brand.secondary")};
 `;
 
 export const LogoutButton = styled.button`
-  padding: 0.6em 1.5em;
-  font-size: ${({ theme }) => theme.fonts.fontSizes.small};
+  padding: ${getSpacing(["padding.small", "padding.small"])};
+  font-size: ${getFont("fontSizes.small")};
   color: #fff;
-  background-color: ${({ theme }) => theme.colors.bg.alternative};
+  background-color: ${getColor("bg.secondary")};
   border: none;
-  border-radius: ${({ theme }) => theme.sizes.borderRadius.small};
+  border-radius: ${getSize("borderRadius.medium")};
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.bg.hover};
+    background-color: ${getColor("bg.hover")};
   }
 `;
+
+// export const ThemeToggleButton = styled.button`
+//   background-color: ${getColor("ui.primary")};
+//   color: ${getColor("text.primary")};
+//   padding: ${getSpacing(["padding.small", "padding.small"])};
+//   border: none;
+//   cursor: pointer;
+//   border-radius: ${getSize("borderRadius.medium")};
+//   font-size: ${getFont("fontSizes.small")};
+
+//   &:hover {
+//     background-color: ${getColor("ui.secondary")};
+//   }
+// `;

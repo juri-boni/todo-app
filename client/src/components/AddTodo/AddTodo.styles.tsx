@@ -1,49 +1,66 @@
 import styled from "styled-components";
+import {
+  getColor,
+  getSpacing,
+  getSize,
+  getFont,
+} from "../../utils/themeHelpers";
 
 export const Form = styled.form`
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  padding: 1rem;
+  gap: ${getSpacing("gap.small")};
+  margin-bottom: ${getSpacing("margin.small")};
+  padding: ${getSpacing("padding.small")};
   width: 100%;
-  height: 6rem;
+  height: ${getSize("height.xxxlarge")};
+  /* background-color: ${getColor("bg.primary")}; */
 
   /* @media (max-width: 600px) {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  } */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+} */
 `;
 
 export const Input = styled.input`
   flex: 1;
   width: 90%;
-  padding: 0.5rem;
-  font-size: 1.4rem;
-  border: 2px solid #333;
+  padding: ${getSpacing("padding.xsmall")};
+  font-size: ${getFont("fontSizes.small")};
+  border: 2px solid ${getColor("border.primary")};
   border-radius: 4px 0 0 4px;
   outline: none;
-
-  @media (max-width: 600px) {
+  background-color: ${getColor("bg.primary")};
+  color: ${getColor("text.primary")};
+  /* @media (max-width: 600px) {
     margin-right: 0;
     margin-bottom: 0.5rem;
+  } */
+  /* input:focus,
+  textarea:focus {
+    border-color: 2px solid ${getColor("brand.primary")};
+  } */
+
+  &:active {
+    border: 2px solid ${getColor("brand.primary")};
   }
 `;
 
 export const Button = styled.button`
   padding: 0.5rem 1rem;
-  font-size: 1.4rem;
-  width: 8rem;
-  background-color: #333;
-  color: #fff;
+  font-size: ${getFont("fontSizes.small")};
+  width: ${getSize("width.xxxlarge")};
+  background-color: ${getColor("bg.secondary")};
+  color: ${getColor("text.primary")};
   border: none;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: #333;
+    background-color: ${getColor("bg.alternative")};
+    color: ${getColor("text.secondary")};
     transform: scale(1.05);
   }
 
@@ -51,17 +68,3 @@ export const Button = styled.button`
     transform: scale(0.95);
   }
 `;
-
-// export const CreateTodoButton = styled.button`
-//   background-color: #627187;
-//   color: #fff;
-//   border: none;
-//   padding: 0.5rem;
-//   border-radius: 4px;
-//   cursor: pointer;
-//   transition: background-color 0.3s ease;
-
-//   &:hover {
-//     background-color: #6271f7;
-//   }
-// `;

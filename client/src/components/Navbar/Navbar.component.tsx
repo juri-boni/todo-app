@@ -6,11 +6,23 @@ import {
   LinksContainer,
   LogoutButton,
   UserName,
+  ThemeToggleButton,
 } from "./Navbar.styles";
+import { useEffect } from "react";
 
-export const Navbar = () => {
+export const Navbar = ({ theme, setTheme }) => {
   const { user, setUser } = useUser();
+
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   console.log("Navbar - theme = ", theme);
+  // }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+  };
 
   const handleLogout = () => {
     setUser(null);
@@ -23,6 +35,9 @@ export const Navbar = () => {
       <LogoContainer>
         <Link to="/">Todo App</Link>
       </LogoContainer>
+      {/* <ThemeToggleButton onClick={toggleTheme}>
+        {theme === "dark" ? "Light" : "Dark"} Mode
+      </ThemeToggleButton> */}
       <LinksContainer>
         {user ? (
           <>

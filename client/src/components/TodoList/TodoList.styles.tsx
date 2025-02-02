@@ -1,17 +1,11 @@
 import styled from "styled-components";
 
+import { getColor, getSpacing } from "../../utils/themeHelpers";
+
 export const ListContainer = styled.ul`
-  width: 85vw;
+  width: 72vw;
   list-style-type: none;
   padding: 2rem;
-  margin: 2rem;
-  background-color: aliceblue;
+  margin: ${getSpacing("margin.large")};
+  background-color: ${getColor("bg.primary")};
 `;
-
-// export const NoTodosMessage = styled.p`
-//   text-align: center;
-//   font-size: 1.8rem;
-//   color: #333;
-//   margin: 2rem 0;
-//   font-weight: bold;
-// `;

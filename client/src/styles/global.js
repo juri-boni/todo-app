@@ -93,7 +93,7 @@ button {
 
 
 button:hover {
-  border-color: #646cff;
+  border-color: #0045A3;
   background-color: #333;
 }
 
@@ -129,14 +129,14 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-  border-color: #646cff;
+  border-color: #0045A3;
 }
 
 /* Blockquote styles */
 blockquote {
   margin: 1em 0;
   padding: 0.5em 1em;
-  border-left: 4px solid #646cff;
+  border-left: 4px solid #0045A3;
   background-color: #f9f9f9;
   color: #333;
   font-style: italic;

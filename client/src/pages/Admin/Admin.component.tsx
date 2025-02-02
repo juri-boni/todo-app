@@ -3,9 +3,14 @@ import React, { useEffect, useState } from "react";
 import { useUser } from "../../hooks/useUser";
 import { User } from "../../types/types";
 import { getAllUsers } from "../../services/usersService";
-import { AdminContainer, Sidebar, UsersTable } from "./Admin.styles";
+import {
+  AdminContainer,
+  Sidebar,
+  UsersTable,
+  ThemeToggleButton,
+} from "./Admin.styles";
 
-export const Admin = () => {
+export const Admin = ({ theme, setTheme, toggleTheme }) => {
   const { user, setUser } = useUser();
   const { token } = useUser();
   const [users, setUsers] = useState<User[]>([]);
@@ -34,6 +39,9 @@ export const Admin = () => {
       <Sidebar>
         <h3>Admin Panel</h3>
         <ul>
+          <ThemeToggleButton onClick={toggleTheme}>
+            {theme === "dark" ? "Light" : "Dark"}
+          </ThemeToggleButton>
           <li>Manage Users</li>
           <li>Settings</li>
           <li>Logout</li>

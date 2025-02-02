@@ -1,57 +1,68 @@
 import styled from "styled-components";
 
+import {
+  getColor,
+  getSize,
+  getSpacing,
+  getFont,
+} from "../../utils/themeHelpers";
+
 export const LoginFormContainer = styled.div`
-  min-height: 80vh;
+  min-height: 50vh;
+  min-width: 50vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: #f2f2f2; */
-  /* Light gray background */
+  margin-top: ${getSpacing("margin.huge")};
 `;
 
 export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  width: 20em; /* Adjusted width for better proportions */
-  padding: 2em;
-  border-radius: 0.5em;
-  background-color: #e0e0e0; /* Light gray */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 65%;
+  height: ${getSize("height.huge")};
+  padding: ${getSpacing("padding.large")};
+  border-radius: ${getSize("borderRadius.medium")};
+  background-color: ${getColor("bg.primary")};
+  box-shadow: ${getColor("shadow.medium")};
+  border: 0.5px solid ${getColor("border.tertiary")};
 `;
 
 export const InputLabelContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1em;
+  margin-bottom: ${getSpacing("margin.small")};
 `;
 
 export const FormLabel = styled.label`
-  margin-bottom: 0.5em;
-  font-size: 0.9em;
-  color: #333; /* Dark gray for contrast */
+  margin-bottom: ${getSpacing("margin.xsmall")};
+  font-size: ${getFont("fontSizes.xsmall")};
+  color: ${getColor("text.tertiary")};
 `;
 
 export const FormInput = styled.input`
-  padding: 0.7em;
-  border: 1px solid #ccc; /* Light border */
-  border-radius: 0.3em;
-  font-size: 0.9em;
+  padding: ${getSpacing("padding.small")};
+  border: 1px solid ${getColor("text.secondary")};
+  border-radius: ${getSize("borderRadius.small")};
+  font-size: ${getFont("fontSizes.small")};
+  margin-bottom: ${getSpacing("margin.medium")};
   outline: none;
 
-  &:focus {
-    border-color: #888; /* Slightly darker on focus */
+  input:active,
+  input:focus {
+    border: 1px solid ${getColor("border.focused")};
   }
 `;
 
 export const FormButton = styled.button`
   align-self: center; /* Centered button */
   width: auto; /* No full width */
-  padding: 0.6em 1.5em;
-  font-size: 0.9em;
-  color: #fff;
-  background-color: #555; /* Medium gray */
+  padding: ${getSpacing(["padding.mediumSmall", "padding.medium"])};
+  font-size: ${getFont("fontSizes.small")};
+  color: ${getColor("text.primary")};
+  background-color: ${getColor("bg.alternative")};
   border: none;
-  border-radius: 0.3em;
+  border-radius: ${getSize("borderRadius.small")};
   cursor: pointer;
   transition: background-color 0.3s;
 
@@ -60,7 +71,7 @@ export const FormButton = styled.button`
   }
 
   &:disabled {
-    background-color: #bbb; /* Disabled gray */
+    background-color: ${getColor("bg.alternative")};
     cursor: not-allowed;
   }
 `;
