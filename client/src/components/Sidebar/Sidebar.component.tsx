@@ -1,5 +1,7 @@
 import React from "react";
 
+import { ThemeButton } from "../ThemeButton/ThemeButton.component";
+
 import {
   SidebarContainer,
   SidebarTitle,
@@ -7,10 +9,11 @@ import {
   SidebarOption,
 } from "./Sidebar.styles";
 
-export const Sidebar = ({ sidebarTitle }) => {
+export const Sidebar = ({ sidebarTitle, theme, setTheme }) => {
   return (
     <SidebarContainer>
       <SidebarTitle>{sidebarTitle}</SidebarTitle>
+      <ThemeButton theme={theme} setTheme={setTheme}></ThemeButton>
       <SidebarOptionList>
         <SidebarOption>Info </SidebarOption>
         <SidebarOption>Settings </SidebarOption>

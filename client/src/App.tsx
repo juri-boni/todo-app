@@ -10,24 +10,8 @@ import { Navbar } from "./components/Navbar/Navbar.component.js";
 import { Admin } from "./pages/Admin/Admin.component.js";
 import { User } from "./pages/User/User.component.js";
 import { TodoPage } from "./pages/Todos/TodoPage.component.js";
+import { AppContainer, MainContent } from "./App.styles.js";
 import { themes } from "./theme/index.js";
-
-const AppContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  min-height: 100vh;
-  padding: 0 20px;
-  background-color: ${({ theme }) => theme?.colors?.bg.primary || "#fff"};
-`;
-
-const MainContent = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-grow: 1;
-`;
 
 function App() {
   const savedTheme = localStorage.getItem("theme") || "dark";
@@ -35,12 +19,13 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
+    console.log("APP TSX => THEME = ", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-  };
+  // const toggleTheme = () => {
+  //   const newTheme = theme === "dark" ? "light" : "dark";
+  //   setTheme(newTheme);
+  // };
 
   return (
     <ThemeProvider theme={themes[theme]}>
@@ -61,7 +46,7 @@ function App() {
                     <Admin
                       theme={theme}
                       setTheme={setTheme}
-                      toggleTheme={toggleTheme}
+                      // toggleTheme={toggleTheme}
                     />
                   }
                 />
@@ -71,11 +56,14 @@ function App() {
                     <User
                       theme={theme}
                       setTheme={setTheme}
-                      toggleTheme={toggleTheme}
+                      // toggleTheme={toggleTheme}
                     />
                   }
                 />
-                <Route path="/profile/mytodo/:id" element={<TodoPage />} />
+                <Route
+                  path="/profile/mytodo/:id"
+                  element={<TodoPage theme={theme} setTheme={setTheme} />}
+                />
               </Routes>
             </MainContent>
           </AppContainer>

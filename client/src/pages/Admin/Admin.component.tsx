@@ -11,7 +11,7 @@ import {
   // ThemeToggleButton,
 } from "./Admin.styles";
 
-export const Admin = ({ theme, setTheme, toggleTheme }) => {
+export const Admin = ({ theme, setTheme }) => {
   const { user, setUser } = useUser();
   const { token } = useUser();
   const [users, setUsers] = useState<User[]>([]);
@@ -36,7 +36,11 @@ export const Admin = ({ theme, setTheme, toggleTheme }) => {
   }, [user, token]);
 
   return (
-    <PageContainer sidebarTitle={"Admin Panel"}>
+    <PageContainer
+      sidebarTitle={"Admin Panel"}
+      theme={theme}
+      setTheme={setTheme}
+    >
       {/* <Sidebar>
         <h3>Admin Panel</h3>
         <ul>

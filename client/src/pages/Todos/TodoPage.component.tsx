@@ -3,26 +3,17 @@ import { useState, useEffect } from "react";
 
 import { UserContainer, UserSidebar } from "./TodoPage.styles";
 import { useTodos } from "../../hooks/useTodos";
+import { PageContainer } from "../../components/PageContainer/PageContainer.component";
 
-export const TodoPage = ({ todos }) => {
+export const TodoPage = ({ theme, setTheme }) => {
   const { id } = useParams();
   // const { title, description } = useTodos();
   const navigate = useNavigate();
 
   return (
-    <UserContainer>
-      <UserSidebar>
-        <ul>
-          {/* <ThemeToggleButton onClick={toggleTheme}>
-                    {theme === "dark" ? "Light" : "Dark"}
-                  </ThemeToggleButton> */}
-          <li>Info</li>
-          <li>Settings</li>
-          <li>Logout</li>
-        </ul>
-      </UserSidebar>
+    <PageContainer theme={theme} setTheme={setTheme}>
       <h1>here goes the todo {id}</h1>
       <ul>{/* <li>{title}</li> */}</ul>
-    </UserContainer>
+    </PageContainer>
   );
 };

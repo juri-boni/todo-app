@@ -6,7 +6,7 @@ import { UserContainer, UserSidebar, ThemeToggleButton } from "./User.styles";
 import { TodoList } from "../../components/TodoList/TodoList.component";
 import { PageContainer } from "../../components/PageContainer/PageContainer.component";
 
-export const User = ({ theme, setTheme, toggleTheme }) => {
+export const User = ({ theme, setTheme }) => {
   const { token, user } = useUser(); // Single call to useUser()
   const { todos, setTodos } = useTodos();
   useEffect(() => {
@@ -30,19 +30,12 @@ export const User = ({ theme, setTheme, toggleTheme }) => {
   }, [token, user?.id]); // Added dependencies
 
   return (
-    <PageContainer sidebarTitle={`${user?.username} sidebar`}>
-      {/* <UserSidebar>
-        <ul>
-          <ThemeToggleButton onClick={toggleTheme}>
-            {theme === "dark" ? "Light" : "Dark"}
-          </ThemeToggleButton>
-          <li>Info</li>
-          <li>Settings</li>
-          <li>Logout</li>
-        </ul>
-      </UserSidebar> */}
+    <PageContainer
+      sidebarTitle={`${user?.username} sidebar`}
+      theme={theme}
+      setTheme={setTheme}
+    >
       <div>
-        {/* <h2>My Todo List</h2> */}
         <TodoList />
       </div>
     </PageContainer>
