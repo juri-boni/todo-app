@@ -9,6 +9,7 @@ import { Register } from "./pages/Register/Register.component.js";
 import { Navbar } from "./components/Navbar/Navbar.component.js";
 import { Admin } from "./pages/Admin/Admin.component.js";
 import { User } from "./pages/User/User.component.js";
+import { TodoPage } from "./pages/Todos/TodoPage.component.js";
 import { themes } from "./theme/index.js";
 
 const AppContainer = styled.div`
@@ -28,27 +29,10 @@ const MainContent = styled.main`
   flex-grow: 1;
 `;
 
-// const ThemeToggleButton = styled.button`
-//   background-color: ${({ theme }) => theme?.colors?.ui.primary || "#333"};
-//   color: ${({ theme }) => theme?.colors?.text.primary || "#fff"};
-//   padding: 0.8rem 1.6rem;
-//   border: none;
-//   cursor: pointer;
-//   margin: 1rem 0;
-//   border-radius: 0.4rem;
-//   font-size: ${({ theme }) => theme?.fonts.fontSizes.medium || "16px"};
-
-//   &:hover {
-//     background-color: ${({ theme }) => theme?.colors?.ui.secondary || "#555"};
-//   }
-// `;
-
 function App() {
-  // Check localStorage for the theme on initial load
   const savedTheme = localStorage.getItem("theme") || "dark";
   const [theme, setTheme] = useState(savedTheme);
 
-  // Update localStorage whenever theme changes
   useEffect(() => {
     localStorage.setItem("theme", theme);
   }, [theme]);
@@ -68,9 +52,6 @@ function App() {
               <Navbar theme={theme} setTheme={setTheme} />
             </header>
             <MainContent>
-              {/* <ThemeToggleButton onClick={toggleTheme}>
-                Switch to {theme === "dark" ? "Light" : "Dark"} Mode
-              </ThemeToggleButton> */}
               <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
@@ -94,6 +75,7 @@ function App() {
                     />
                   }
                 />
+                <Route path="/profile/mytodo/:id" element={<TodoPage />} />
               </Routes>
             </MainContent>
           </AppContainer>

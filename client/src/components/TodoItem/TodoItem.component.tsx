@@ -1,6 +1,7 @@
 import React from "react";
 import { deleteTodo } from "../../services/todosService";
 import { useUser } from "../../hooks/useUser";
+import { Link } from "react-router-dom";
 import {
   TodoContainer,
   TodoItemContainer,
@@ -41,15 +42,17 @@ export const TodoItem = ({ todo }) => {
   return (
     <TodoContainer>
       <TodoItemContainer key={id} deleted={deleted}>
-        <TodoText> {title}</TodoText>
-        <TodoElement>DESCRIPTION: {description}</TodoElement>
+        <Link to={`/profile/mytodo/${id}`}>
+          <TodoText> {title}</TodoText>
+        </Link>
+        {/* <TodoElement>DESCRIPTION: {description}</TodoElement>
         <TodoElement>CREATED BY: {created_by}</TodoElement>
         <TodoElement>
           {completed ? "completed" : "to be completed"}{" "}
         </TodoElement>
         <TodoElement>NOTES: {notes}</TodoElement>
         <TodoElement>PRIORITY: {priority} </TodoElement>
-        <TodoElement>{deleted ? "deleted" : "active"}</TodoElement>
+        <TodoElement>{deleted ? "deleted" : "active"}</TodoElement> */}
       </TodoItemContainer>
       {!deleted && (
         <DeleteButton onClick={() => handleDelete()} deleted={deleted}>

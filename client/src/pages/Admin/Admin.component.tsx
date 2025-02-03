@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 // import { useUser } from "../../context/userContext";
 import { useUser } from "../../hooks/useUser";
 import { User } from "../../types/types";
+import { PageContainer } from "../../components/PageContainer/PageContainer.component";
 import { getAllUsers } from "../../services/usersService";
 import {
-  AdminContainer,
-  Sidebar,
+  // AdminContainer,
+  // Sidebar,
   UsersTable,
-  ThemeToggleButton,
+  // ThemeToggleButton,
 } from "./Admin.styles";
 
 export const Admin = ({ theme, setTheme, toggleTheme }) => {
@@ -35,8 +36,8 @@ export const Admin = ({ theme, setTheme, toggleTheme }) => {
   }, [user, token]);
 
   return (
-    <AdminContainer>
-      <Sidebar>
+    <PageContainer sidebarTitle={"Admin Panel"}>
+      {/* <Sidebar>
         <h3>Admin Panel</h3>
         <ul>
           <ThemeToggleButton onClick={toggleTheme}>
@@ -46,7 +47,7 @@ export const Admin = ({ theme, setTheme, toggleTheme }) => {
           <li>Settings</li>
           <li>Logout</li>
         </ul>
-      </Sidebar>
+      </Sidebar> */}
       {isLoading && <p>Loading users...</p>}
       {error && <p className="error">{error}</p>}
       <UsersTable>
@@ -72,6 +73,6 @@ export const Admin = ({ theme, setTheme, toggleTheme }) => {
           </tbody>
         </table>
       </UsersTable>
-    </AdminContainer>
+    </PageContainer>
   );
 };

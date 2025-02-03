@@ -11,6 +11,8 @@ export const TodoContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background-color: ${getColor("bg.primary")};
+  /* border-right: 0.5px solid #fff; */
 `;
 
 export const TodoItemContainer = styled.div<{ deleted: boolean }>`
@@ -18,16 +20,22 @@ export const TodoItemContainer = styled.div<{ deleted: boolean }>`
   flex-direction: column;
   gap: ${getSpacing("gap.xsmall")};
   padding: ${getSpacing("padding.small")};
-  border: 1px solid ${getColor("border.primary")};
+  /* border: 1px solid ${getColor("border.primary")}; */
+  /* border-right: 0.5px solid #bbb; */
+  border-bottom: 0.5px solid #bbb;
+  /* border-top: 0.5px solid #222;
+  border-left: 0.5px solid #222; */
   border-radius: ${getSize("borderRadius.medium")};
-  background-color: ${getColor("bg.secondary")};
+  /* background-color: ${getColor("bg.secondary")}; */
   margin-bottom: ${getSpacing("margin.small")};
   text-decoration: ${({ deleted }) => (deleted ? "line-through" : "none")};
+  width: 90%;
+  max-width: 90%;
 `;
 
 export const TodoText = styled.span`
-  font-size: ${getFont("fontSizes.medium")};
-  font-weight: ${getFont("fontWeights.medium")};
+  font-size: ${getFont("fontSizes.small")};
+  font-weight: ${getFont("fontWeights.normal")};
   color: ${getColor("text.primary")};
 `;
 
