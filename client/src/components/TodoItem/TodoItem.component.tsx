@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { deleteTodo } from "../../services/todosService";
 import { useUser } from "../../hooks/useUser";
 import { Link } from "react-router-dom";
+import { Button } from "../button/Button.component";
+
 import {
   TodoContainer,
   TodoItemContainer,
@@ -61,11 +63,22 @@ export const TodoItem = ({ todo }) => {
           <TodoText isCompleted={isCompleted}> {title}</TodoText>
         </Link>
       </TodoItemContainer>
-      {!deleted && (
+      {/* {!deleted && (
         <DeleteButton onClick={() => handleDelete()} deleted={deleted}>
           Delete
         </DeleteButton>
-      )}
+      )} */}
+      <Button
+        handleFunction={toggleIsCompleted}
+        variant="inverted"
+        size="small"
+        shape="softRounded"
+        state="default"
+        shadow="none"
+        animation="standard"
+      >
+        Delete
+      </Button>
 
       {/* {deleted && <DeleteButton deleted={deleted}>Recover Todo</DeleteButton>} */}
     </TodoContainer>
