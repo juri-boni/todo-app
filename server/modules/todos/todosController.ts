@@ -6,6 +6,7 @@ import {
   deleteTodo,
   updateTodo,
   fetchTodosByUser,
+  fetchTodoById,
 } from "./todoService";
 
 //Controller function to get All todos
@@ -31,6 +32,20 @@ export const getTodosByUser = async (req: Request, res: Response) => {
     res.json(todos);
   } catch (error) {
     console.error("Error fetching todos by user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const getTodo = async (req: Request, res: Response) => {
+  // console.log("calling getTodo");
+  const { id } = req.params; // use "id" instead of "todo_id"
+
+  try {
+    const todo = await fetchTodoById(parseInt(id));
+    // console.log("TODO = ", todo);
+    res.json(todo);
+  } catch (error) {
+    console.error("Error fetching todo by id:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

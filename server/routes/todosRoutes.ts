@@ -5,6 +5,7 @@ import {
   removeTodo,
   modifyTodo,
   getTodosByUser,
+  getTodo,
 } from "../modules/todos/todosController";
 
 import { verifyToken } from "../middlewares/authMiddleware";
@@ -14,7 +15,14 @@ const router = Router();
 
 router.get("/todos", verifyToken, checkRole(["admin"]), getTodos);
 
-router.get("/todos/:user_id", verifyToken, checkRole(["user"]), getTodosByUser);
+router.get(
+  "/users/:user_id/todos",
+  verifyToken,
+  checkRole(["user"]),
+  getTodosByUser
+);
+
+router.get("/todos/:id", verifyToken, checkRole(["user"]), getTodo);
 
 router.post("/todos", verifyToken, checkRole(["user"]), createTodo);
 router.delete("/todos/:id", verifyToken, checkRole(["user"]), removeTodo);

@@ -1,41 +1,39 @@
 import styled from "styled-components";
-import { getColor, getSpacing, getFont } from "../../utils/themeHelpers";
+// import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import {
+  getColor,
+  getSpacing,
+  getFont,
+  getSize,
+} from "../../utils/themeHelpers";
 
-export const UserContainer = styled.div`
+export const TodoContainer = styled.div`
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
+  width: 82vw;
   background-color: ${getColor("bg.primary")};
-  height: 100vh;
-  width: 100vw;
-  padding-left: ${getSpacing("padding.medium")};
-  padding-right: ${getSpacing("padding.medium")};
+  padding: ${getSpacing("padding.medium")};
 `;
 
-export const UserSidebar = styled.aside`
-  width: 18%;
-  background-color: ${getColor("bg.primary")};
-  padding: ${getSpacing("padding.large")};
-  border-right: 1px solid ${getColor("border.primary")};
+export const TodoLeftContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* background-color: aliceblue; */
+  width: 70%;
+  /* font-size: 24px; */
+`;
 
-  h3 {
-    margin-bottom: ${getSpacing("margin.large")};
-    font-size: ${getFont("fontSizes.large")};
-  }
+export const TodoRightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* background-color: #839238; */
+  width: 30%;
+`;
 
-  ul {
-    list-style: none;
-    padding: ${getSpacing("padding.none")};
-
-    li {
-      margin-bottom: ${getSpacing("margin.medium")};
-      cursor: pointer;
-      font-size: ${getFont("fontSizes.small")};
-      color: ${getColor("text.secondary")};
-
-      &:hover {
-        color: ${getColor("text.primary")};
-      }
-    }
-  }
+export const CheckboxCompleted = styled(CheckBoxIcon)`
+  /* & > svg {
+    width: ${({ size }) => size || "50px"};
+    height: ${({ size }) => size || "50px"};
+  } */
 `;

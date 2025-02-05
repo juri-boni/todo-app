@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
+import CheckBoxOutlineBlankOutlinedIcon from "@mui/icons-material/CheckBoxOutlineBlankOutlined";
+
 import {
   getFont,
   getColor,
@@ -12,37 +17,36 @@ export const TodoContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: ${getColor("bg.primary")};
+  gap: ${getSpacing("gap.small")};
   /* border-right: 0.5px solid #fff; */
 `;
 
 export const TodoItemContainer = styled.div<{ deleted: boolean }>`
   display: flex;
   flex-direction: column;
-  gap: ${getSpacing("gap.xsmall")};
+  justify-content: center;
+  /* gap: ${getSpacing("gap.xsmall")}; */
   padding: ${getSpacing("padding.small")};
-  /* border: 1px solid ${getColor("border.primary")}; */
-  /* border-right: 0.5px solid #bbb; */
-  border-bottom: 0.5px solid #bbb;
-  /* border-top: 0.5px solid #222;
-  border-left: 0.5px solid #222; */
+  /* border-bottom: 0.5px solid #bbb; */
   border-radius: ${getSize("borderRadius.medium")};
-  /* background-color: ${getColor("bg.secondary")}; */
-  margin-bottom: ${getSpacing("margin.small")};
+  /* margin-bottom: ${getSpacing("margin.small")}; */
   text-decoration: ${({ deleted }) => (deleted ? "line-through" : "none")};
-  width: 90%;
-  max-width: 90%;
+  width: 95%;
+  max-width: 95%;
 `;
 
-export const TodoText = styled.span`
+export const TodoText = styled.span<{ isCompleted: boolean }>`
   font-size: ${getFont("fontSizes.small")};
   font-weight: ${getFont("fontWeights.normal")};
-  color: ${getColor("text.primary")};
+  /* color: ${getColor("text.primary")}; */
+  color: ${({ isCompleted }) =>
+    isCompleted ? getColor("text.tertiary") : getColor("text.primary")};
 `;
 
-export const TodoElement = styled.span`
-  font-size: ${getFont("fontSizes.xxsmall")};
-  color: ${getColor("text.secondary")};
-`;
+// export const TodoElement = styled.span`
+//   font-size: ${getFont("fontSizes.xxsmall")};
+//   color: ${getColor("text.secondary")};
+// `;
 
 export const DeleteButton = styled.button<{ deleted: boolean }>`
   background: ${({ deleted }) => (deleted ? "#0045A3" : "#FF3B30")};
@@ -56,4 +60,12 @@ export const DeleteButton = styled.button<{ deleted: boolean }>`
   &:hover {
     background-color: ${getColor("bg.hover")};
   }
+`;
+
+export const CheckboxCompleted = styled(CheckBoxIcon)`
+  cursor: pointer;
+`;
+
+export const CheckboxPending = styled(CheckBoxOutlineBlankIcon)`
+  cursor: pointer;
 `;

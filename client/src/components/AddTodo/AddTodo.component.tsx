@@ -37,7 +37,7 @@ export const AddTodo: React.FC = () => {
 
     try {
       const result = await createTodo(token ?? "", todoData);
-      console.log(result);
+      // console.log(result);
     } catch (error) {
       console.error("faild to create new todo item", error);
     }

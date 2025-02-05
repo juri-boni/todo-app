@@ -1,61 +1,65 @@
 import styled from "styled-components";
-import {
-  getColor,
-  getSpacing,
-  getFont,
-  getSize,
-} from "../../utils/themeHelpers";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
-export const UserContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  /* justify-content: space-between; */
-  background-color: ${getColor("bg.primary")};
-  height: 100vh;
-  width: 100vw;
-  padding-left: ${getSpacing("padding.medium")};
-  padding-right: ${getSpacing("padding.medium")};
-`;
+// import {
+//   getColor,
+//   getSpacing,
+//   getFont,
+//   getSize,
+// } from "../../utils/themeHelpers";
 
-export const UserSidebar = styled.aside`
-  width: 18%;
-  background-color: ${getColor("bg.primary")};
-  padding: ${getSpacing("padding.large")};
-  border-right: 1px solid ${getColor("border.primary")};
+// export const UserContainer = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   /* justify-content: space-between; */
+//   background-color: ${getColor("bg.primary")};
+//   height: 100vh;
+//   width: 100vw;
+//   padding-left: ${getSpacing("padding.medium")};
+//   padding-right: ${getSpacing("padding.medium")};
+// `;
 
-  h3 {
-    margin-bottom: ${getSpacing("margin.large")};
-    font-size: ${getFont("fontSizes.large")};
-  }
+// export const UserSidebar = styled.aside`
+//   width: 18%;
+//   background-color: ${getColor("bg.primary")};
+//   padding: ${getSpacing("padding.large")};
+//   border-right: 1px solid ${getColor("border.primary")};
 
-  ul {
-    list-style: none;
-    padding: ${getSpacing("padding.none")};
+//   h3 {
+//     margin-bottom: ${getSpacing("margin.large")};
+//     font-size: ${getFont("fontSizes.large")};
+//   }
 
-    li {
-      margin-bottom: ${getSpacing("margin.medium")};
-      cursor: pointer;
-      font-size: ${getFont("fontSizes.small")};
-      color: ${getColor("text.secondary")};
+//   ul {
+//     list-style: none;
+//     padding: ${getSpacing("padding.none")};
 
-      &:hover {
-        color: ${getColor("text.primary")};
-      }
-    }
-  }
-`;
+//     li {
+//       margin-bottom: ${getSpacing("margin.medium")};
+//       cursor: pointer;
+//       font-size: ${getFont("fontSizes.small")};
+//       color: ${getColor("text.secondary")};
 
-export const ThemeToggleButton = styled.button`
-  background-color: ${getColor("ui.primary")};
-  color: ${getColor("text.primary")};
-  padding: ${getSpacing(["padding.xsmall", "padding.medium"])};
-  margin-bottom: ${getSpacing("margin.large")};
-  border: none;
-  cursor: pointer;
-  border-radius: ${getSize("borderRadius.medium")};
-  font-size: ${getFont("fontSizes.xsmall")};
+//       &:hover {
+//         color: ${getColor("text.primary")};
+//       }
+//     }
+//   }
+// `;
 
-  &:hover {
-    background-color: ${getColor("ui.secondary")};
-  }
-`;
+// export const ThemeToggleButton = styled.button`
+//   background-color: ${getColor("ui.primary")};
+//   color: ${getColor("text.primary")};
+//   padding: ${getSpacing(["padding.xsmall", "padding.medium"])};
+//   margin-bottom: ${getSpacing("margin.large")};
+//   border: none;
+//   cursor: pointer;
+//   border-radius: ${getSize("borderRadius.medium")};
+//   font-size: ${getFont("fontSizes.xsmall")};
+
+//   &:hover {
+//     background-color: ${getColor("ui.secondary")};
+//   }
+// `;
+
+// export const CheckboxCompleted = styled(CheckBoxIcon)``;

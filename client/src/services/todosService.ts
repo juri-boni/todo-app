@@ -1,4 +1,7 @@
+import { todo } from "node:test";
+
 const API_URL_TODOS = "http://localhost:3000/api/todos";
+const API_URL_USERS = "http://localhost:3000/api/users";
 
 export const createTodo = async (
   token: string,
@@ -48,7 +51,7 @@ export const deleteTodo = async (token: string, todoId: number) => {
       },
     });
 
-    console.log(response);
+    // console.log(response);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch todos: ${response.statusText}`);
@@ -61,18 +64,18 @@ export const deleteTodo = async (token: string, todoId: number) => {
   }
 };
 
-export const getAllTodos = async (token: string, userId: number) => {
-  console.log("GETTING TODOS with token ", token);
+export const getAllTodosByUserId = async (token: string, userId: number) => {
+  // console.log("GETTING TODOS with token ", token);
 
   try {
-    const response = await fetch(`${API_URL_TODOS}/${userId}`, {
+    const response = await fetch(`${API_URL_USERS}/${userId}/todos`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    console.log(response);
+    // console.log(response);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch todos: ${response.statusText}`);
@@ -82,5 +85,25 @@ export const getAllTodos = async (token: string, userId: number) => {
   } catch (error) {
     console.error("Error fetching todos:", error);
     throw error;
+  }
+};
+
+export const getTodo = async (token: string, todoId: number) => {
+  console.log("GETTING TODO WITH ID ", todoId);
+  console.log(`route ${API_URL_TODOS}/${todoId}`);
+  try {
+    const response = await fetch(`${API_URL_TODOS}/${todoId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) {
+      console.log("!response.ok");
+      throw new Error(`Failed to fetch todo ${todoId}: ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching todo number ${todoId}`, error);
   }
 };

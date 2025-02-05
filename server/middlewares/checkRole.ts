@@ -6,8 +6,8 @@ import { Request, Response, NextFunction } from "express";
 export const checkRole = (allowedRoles: string[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
     // Ensure the user is authenticated (added by verifyToken)
-    console.log((req as any).user);
-    console.log("allowedRoles  -  ", allowedRoles);
+    // console.log((req as any).user);
+    // console.log("allowedRoles  -  ", allowedRoles);
     if (!(req as any).user) {
       res.status(401).json({
         message: "Unauthorized. User not authenticated",
@@ -17,7 +17,7 @@ export const checkRole = (allowedRoles: string[]) => {
 
     // Check if the user's role is in the allowed roles
     if (!allowedRoles.includes((req as any).user.role)) {
-      console.log("ROLE: ", (req as any).user.role);
+      // console.log("ROLE: ", (req as any).user.role);
       res.status(403).json({
         message: "Forbidden. You do not have access to this resource",
       });

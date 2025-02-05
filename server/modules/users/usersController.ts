@@ -29,7 +29,7 @@ export const createUser = async (
     const { username, email, password } = userData;
 
     if (!username || !email || !password) {
-      console.log("All fields are required!!");
+      // console.log("All fields are required!!");
       res.status(400).json({ message: "All fields are required!!" });
       return;
     }
@@ -39,14 +39,14 @@ export const createUser = async (
       [username, email]
     );
     if (existingUser.rows.length > 0) {
-      console.log("Username or email already in use.");
+      // console.log("Username or email already in use.");
       res.status(400).json({ message: "Username or email already in use." });
       return;
     }
 
     const newUser = await addUser(userData);
     // res.status(201).json(newUser);
-    console.log("User registered successfully!");
+    // console.log("User registered successfully!");
     res.status(201).json({ message: "User registered successfully!", newUser });
   } catch (error) {
     console.error("Error creating user: ", error);

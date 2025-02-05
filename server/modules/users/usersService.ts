@@ -65,10 +65,10 @@ export const addUser = async (userData: {
 
   const values = [username, email, hashedPassword, role || "user"];
 
-  console.log(query);
+  // console.log(query);
 
   try {
-    console.log("Adding user to database...");
+    // console.log("Adding user to database...");
     const result = await pool.query(query, values);
     return result.rows[0];
   } catch (error) {

@@ -19,7 +19,6 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
-    console.log("APP TSX => THEME = ", theme);
   }, [theme]);
 
   // const toggleTheme = () => {

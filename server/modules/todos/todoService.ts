@@ -17,6 +17,18 @@ export const fetchTodosByUser = async (user_id: number) => {
   return result.rows;
 };
 
+export const fetchTodoById = async (todo_id: number) => {
+  const query = `
+  SELECT * 
+  FROM todos
+  WHERE id = $1
+  AND deleted = FALSE
+  `;
+
+  const result = await pool.query(query, [todo_id]);
+  return result.rows;
+};
+
 export const addTodo = async (todoData: {
   title: string;
   description?: string;
