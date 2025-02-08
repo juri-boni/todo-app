@@ -32,11 +32,11 @@ export const LinksContainer = styled.ul`
   gap: ${getSpacing("gap.medium")};
   margin: ${getSpacing("margin.none")};
   padding: ${getSpacing("padding.none")};
-  align-items: center; // Ensures vertical alignment of the items
+  align-items: center;
 
   li {
     display: flex;
-    align-items: center; // Ensures individual list items are centered vertically
+    align-items: center;
   }
 
   a {
@@ -51,32 +51,3 @@ export const UserName = styled.span`
   font-weight: ${getFont("fontWeights.medium")};
   color: ${getColor("brand.secondary")};
 `;
-
-export const LogoutButton = styled.button`
-  padding: ${getSpacing(["padding.small", "padding.small"])};
-  font-size: ${getFont("fontSizes.small")};
-  color: #fff;
-  background-color: ${getColor("bg.secondary")};
-  border: none;
-  border-radius: ${getSize("borderRadius.medium")};
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: ${getColor("bg.hover")};
-  }
-`;
-
-// export const ThemeToggleButton = styled.button`
-//   background-color: ${getColor("ui.primary")};
-//   color: ${getColor("text.primary")};
-//   padding: ${getSpacing(["padding.small", "padding.small"])};
-//   border: none;
-//   cursor: pointer;
-//   border-radius: ${getSize("borderRadius.medium")};
-//   font-size: ${getFont("fontSizes.small")};
-
-//   &:hover {
-//     background-color: ${getColor("ui.secondary")};
-//   }
-// `;

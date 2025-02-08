@@ -19,7 +19,9 @@ export const LoginFormContainer = styled.div`
 export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  width: 65%;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
   height: ${getSize("height.huge")};
   padding: ${getSpacing("padding.large")};
   border-radius: ${getSize("borderRadius.medium")};
@@ -54,24 +56,24 @@ export const FormInput = styled.input`
   }
 `;
 
-export const FormButton = styled.button`
-  align-self: center; /* Centered button */
-  width: auto; /* No full width */
-  padding: ${getSpacing(["padding.mediumSmall", "padding.medium"])};
-  font-size: ${getFont("fontSizes.small")};
-  color: ${getColor("text.primary")};
-  background-color: ${getColor("bg.alternative")};
-  border: none;
-  border-radius: ${getSize("borderRadius.small")};
-  cursor: pointer;
-  transition: background-color 0.3s;
+// export const FormButton = styled.button`
+//   align-self: center;
+//   width: auto; /* No full width */
+//   padding: ${getSpacing(["padding.mediumSmall", "padding.medium"])};
+//   font-size: ${getFont("fontSizes.small")};
+//   color: ${getColor("text.primary")};
+//   background-color: ${getColor("bg.alternative")};
+//   border: none;
+//   border-radius: ${getSize("borderRadius.small")};
+//   cursor: pointer;
+//   transition: background-color 0.3s;
 
-  &:hover {
-    background-color: #333; /* Dark gray on hover */
-  }
+//   &:hover {
+//     background-color: #333; /* Dark gray on hover */
+//   }
 
-  &:disabled {
-    background-color: ${getColor("bg.alternative")};
-    cursor: not-allowed;
-  }
-`;
+//   &:disabled {
+//     background-color: ${getColor("bg.alternative")};
+//     cursor: not-allowed;
+//   }
+// `;

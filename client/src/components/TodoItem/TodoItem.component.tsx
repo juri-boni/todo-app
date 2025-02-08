@@ -8,37 +8,29 @@ import {
   TodoContainer,
   TodoItemContainer,
   TodoText,
-  // TodoElement,
-  DeleteButton,
   CheckboxCompleted,
   CheckboxPending,
 } from "./TodoItem.styles";
 
-export const TodoItem = ({ todo }) => {
+interface Todo {
+  id: number;
+  title: string;
+  deleted?: boolean;
+}
+
+interface TodoItemProps {
+  todo: Todo;
+}
+
+export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   const { token } = useUser();
   const [isCompleted, setIsCompleted] = useState(false);
-  // const todoId = todo.id;
-  const {
-    id,
-    title,
-    user_id,
-    created_by,
-    deleted,
-    completed,
-    description,
-    due_date,
-    estimated_time,
-    notes,
-    priority,
-    recurring_type,
-    tags,
-  } = todo;
+  const { id, title, deleted } = todo;
 
   const handleDelete = async () => {
-    // console.log("deleting todo ", id);
     try {
-      const response = await deleteTodo(token ?? "", id);
-      // console.log("DELETING TODO: REPONSE = ", response);
+      await deleteTodo(token ?? "", id);
+      toggleIsCompleted();
     } catch (error) {
       console.error("error trying to delete a todo ", error);
     }
@@ -54,7 +46,6 @@ export const TodoItem = ({ todo }) => {
     <TodoContainer>
       {isCompleted && (
         <CheckboxCompleted
-          // fontSize={"large"}
           color={"primary"}
           onClick={toggleIsCompleted}
         ></CheckboxCompleted>
@@ -62,14 +53,14 @@ export const TodoItem = ({ todo }) => {
       {!isCompleted && (
         <CheckboxPending onClick={toggleIsCompleted}></CheckboxPending>
       )}
-      <TodoItemContainer key={id} deleted={deleted}>
+      <TodoItemContainer key={id} deleted={deleted ?? false}>
         <Link to={`/profile/mytodo/${id}`}>
           <TodoText isCompleted={isCompleted}> {title}</TodoText>
         </Link>
       </TodoItemContainer>
 
       <Button
-        onClickFunction={toggleIsCompleted}
+        onClickFunction={handleDelete}
         variant="outlined"
         size="xsmall"
         shape="square"
@@ -86,8 +77,6 @@ export const TodoItem = ({ todo }) => {
       >
         Update
       </Button>
-
-      {/* {deleted && <DeleteButton deleted={deleted}>Recover Todo</DeleteButton>} */}
     </TodoContainer>
   );
 };

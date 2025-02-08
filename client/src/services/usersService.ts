@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:3000/api/users";
-// const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000/api/";
 
 export const registerUser = async (userData: {
   username: string;
@@ -25,9 +24,10 @@ export const loginUser = async (userData: {
   try {
     const response = await axios.post(`${API_URL}/login`, userData);
     return response.data;
-  } catch (error: any) {
-    if (error.response) {
-      throw new Error(error.response.data.message || "Login failed");
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      // Check if it's an AxiosError
+      throw new Error(error.response?.data.message || "Login failed");
     } else {
       throw new Error("Network error. Please try again.");
     }

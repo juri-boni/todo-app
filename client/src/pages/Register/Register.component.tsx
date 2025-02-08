@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { registerUser } from "../../services/usersService";
-// import { useUser } from "../../context/userContext";
 import { useUser } from "../../hooks/useUser";
 import {
   RegisterContainer,
@@ -37,16 +36,17 @@ export const Register = () => {
       const { newUser } = response;
 
       setUser(newUser);
-      // setUser(response);
 
-      // Clear fields after success
       setUsername("");
       setEmail("");
       setPassword("");
       setRole("user");
-    } catch (error: any) {
-      setError(error.message || "Registration failed. Please try again.");
-      console.error("Error during registration:", error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
     } finally {
       setIsLoading(false);
     }

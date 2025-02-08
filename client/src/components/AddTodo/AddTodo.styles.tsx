@@ -12,10 +12,8 @@ export const Form = styled.form`
   align-items: center;
   gap: ${getSpacing("gap.small")};
   margin-bottom: ${getSpacing("margin.small")};
-  /* padding: ${getSpacing("padding.small")}; */
   width: 100%;
   height: ${getSize("height.xxxlarge")};
-  /* background-color: ${getColor("bg.primary")}; */
 
   /* @media (max-width: 600px) {
   flex-direction: column;
@@ -35,38 +33,7 @@ export const Input = styled.input`
   outline: none;
   background-color: ${getColor("bg.primary")};
   color: ${getColor("text.primary")};
-  /* @media (max-width: 600px) {
-    margin-right: 0;
-    margin-bottom: 0.5rem;
-  } */
-  /* input:focus,
-  textarea:focus {
-    border-color: 2px solid ${getColor("brand.primary")};
-  } */
-
   &:active {
     border: 2px solid ${getColor("brand.primary")};
-  }
-`;
-
-export const Button = styled.button`
-  padding: 0.5rem 1rem;
-  font-size: ${getFont("fontSizes.small")};
-  width: ${getSize("width.xxxlarge")};
-  background-color: ${getColor("bg.secondary")};
-  color: ${getColor("text.primary")};
-  border: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: ${getColor("bg.alternative")};
-    color: ${getColor("text.secondary")};
-    transform: scale(1.05);
-  }
-
-  &:active {
-    transform: scale(0.95);
   }
 `;

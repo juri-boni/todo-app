@@ -20,7 +20,7 @@ export const stateStyles = {
     outline-offset: 2px;
   `,
   disabled: css`
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
     pointer-events: none;
   `,

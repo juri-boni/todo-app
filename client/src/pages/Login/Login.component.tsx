@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-// import { useUser } from "../../context/userContext";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 import { loginUser } from "../../services/usersService";
+import { Button } from "../../components/button/Button.component";
 import {
   LoginFormContainer,
   LoginForm,
   InputLabelContainer,
   FormLabel,
   FormInput,
-  FormButton,
+  // FormButton,
 } from "./Login.styles";
 
 export const Login = () => {
@@ -18,6 +19,8 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,8 +44,17 @@ export const Login = () => {
       setEmail("");
       setPassword("");
       localStorage.setItem("user", JSON.stringify(loggedUser));
-    } catch (error: any) {
-      setError(error.message);
+      if (user.role === "user") {
+        navigate("/profile");
+      } else if (user.role === "admin") {
+        navigate("/admin");
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -84,9 +96,18 @@ export const Login = () => {
             {error}
           </p>
         )}
-        <FormButton type="submit" disabled={isLoading || !email || !password}>
+        {/* <FormButton type="submit" disabled={isLoading || !email || !password}>
           {isLoading ? "Logging in..." : "Login"}
-        </FormButton>
+        </FormButton> */}
+        <Button
+          type="submit"
+          variant="success"
+          shape="softRounded"
+          disabled={isLoading || !email || !password}
+          state={!email || !password ? "disabled" : "default"}
+        >
+          {isLoading ? "Logging in..." : "Login"}
+        </Button>
       </LoginForm>
     </LoginFormContainer>
   );

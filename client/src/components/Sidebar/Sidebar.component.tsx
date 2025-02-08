@@ -1,6 +1,3 @@
-import React from "react";
-
-// import { ThemeButton } from "../ThemeButton/ThemeButton.component";
 import { Button } from "../button/Button.component";
 
 import {
@@ -10,7 +7,17 @@ import {
   SidebarOption,
 } from "./Sidebar.styles";
 
-export const Sidebar = ({ sidebarTitle, theme, setTheme }) => {
+interface SidebarProps {
+  sidebarTitle: string;
+  theme: string;
+  setTheme: (theme: string) => void;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({
+  sidebarTitle,
+  theme,
+  setTheme,
+}) => {
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
@@ -36,9 +43,6 @@ export const Sidebar = ({ sidebarTitle, theme, setTheme }) => {
         <SidebarOption>Logout </SidebarOption>
         <SidebarOption>Option4 </SidebarOption>
         <SidebarOption>Option5 </SidebarOption>
-        {/* <SidebarOption>Option6 </SidebarOption>
-        <SidebarOption>Option7 </SidebarOption>
-        <SidebarOption>Option8 </SidebarOption> */}
       </SidebarOptionList>
     </SidebarContainer>
   );

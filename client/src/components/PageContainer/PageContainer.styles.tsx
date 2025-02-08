@@ -4,7 +4,6 @@ import { getColor, getSpacing } from "../../utils/themeHelpers";
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   background-color: ${getColor("bg.primary")};
   height: 100vh;
   width: 100vw;

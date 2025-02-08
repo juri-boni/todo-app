@@ -6,12 +6,8 @@ import { shapeStyles } from "./variants/shapeVariants.js";
 import { stateStyles } from "./variants/stateVariants.js";
 import { shadowStyles } from "./variants/shadowVariants.js";
 import { textStyleVariants } from "./variants/textVariants.js";
-// import { animationStyles } from "./variants/animationVariants.js";
+
 import { animationVariants } from "./variants/animationVariants.js";
-// import {
-//   submitAnimation,
-//   triggerSubmitAnimation,
-// } from "./variants/animationVariants.js";
 
 interface ButtonContainerProps {
   variant: "primary" | "secondary" | "inverted" | "danger";

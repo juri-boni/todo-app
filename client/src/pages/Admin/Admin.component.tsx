@@ -1,25 +1,22 @@
-import React, { useEffect, useState } from "react";
-// import { useUser } from "../../context/userContext";
+import { useEffect, useState } from "react";
 import { useUser } from "../../hooks/useUser";
 import { User } from "../../types/types";
 import { PageContainer } from "../../components/PageContainer/PageContainer.component";
 import { getAllUsers } from "../../services/usersService";
-import {
-  // AdminContainer,
-  // Sidebar,
-  UsersTable,
-  // ThemeToggleButton,
-} from "./Admin.styles";
+import { UsersTable } from "./Admin.styles";
 
-export const Admin = ({ theme, setTheme }) => {
-  const { user, setUser } = useUser();
-  const { token } = useUser();
+interface AdminProps {
+  theme: string;
+  setTheme: (theme: string) => void;
+}
+
+export const Admin: React.FC<AdminProps> = ({ theme, setTheme }) => {
+  const { user, token } = useUser();
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // const token = user?.token;
     const fetchUsers = async () => {
       setIsLoading(true);
       try {
@@ -41,17 +38,6 @@ export const Admin = ({ theme, setTheme }) => {
       theme={theme}
       setTheme={setTheme}
     >
-      {/* <Sidebar>
-        <h3>Admin Panel</h3>
-        <ul>
-          <ThemeToggleButton onClick={toggleTheme}>
-            {theme === "dark" ? "Light" : "Dark"}
-          </ThemeToggleButton>
-          <li>Manage Users</li>
-          <li>Settings</li>
-          <li>Logout</li>
-        </ul>
-      </Sidebar> */}
       {isLoading && <p>Loading users...</p>}
       {error && <p className="error">{error}</p>}
       <UsersTable>

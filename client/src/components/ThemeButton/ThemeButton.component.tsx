@@ -1,7 +1,14 @@
-import React from "react";
 import { ThemeToggleButton } from "./ThemeButton.styles";
 
-export const ThemeButton = ({ theme, setTheme }) => {
+interface ThemeButtonProps {
+  theme: string;
+  setTheme: (theme: string) => void;
+}
+
+export const ThemeButton: React.FC<ThemeButtonProps> = ({
+  theme,
+  setTheme,
+}) => {
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);

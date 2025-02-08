@@ -23,12 +23,12 @@ interface TodoData {
 
 export const AddTodo: React.FC = () => {
   const { token, user } = useUser();
-  const { todos, setTodos } = useTodos();
+  const { setTodos } = useTodos();
   const [inputValue, setInputValue] = useState("");
   const todoData: TodoData = {
     title: inputValue,
-    user_id: user?.id,
-    created_by: user?.id,
+    user_id: user?.id ?? 0,
+    created_by: user?.id ?? 0,
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +43,10 @@ export const AddTodo: React.FC = () => {
       console.log(result);
       if (result) {
         setInputValue("");
-        const fetchedTodos = await getAllTodosByUserId(token, user.id);
+        const fetchedTodos = await getAllTodosByUserId(
+          token ?? "",
+          user?.id ?? 0
+        );
         setTodos(fetchedTodos);
       }
     } catch (error) {

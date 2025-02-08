@@ -1,5 +1,3 @@
-import { todo } from "node:test";
-
 const API_URL_TODOS = "http://localhost:3000/api/todos";
 const API_URL_USERS = "http://localhost:3000/api/users";
 
@@ -34,10 +32,10 @@ export const createTodo = async (
       throw new Error(`Failed to create todo. Status: ${response.status}`);
     }
 
-    return await response.json(); // Return the parsed response
+    return await response.json();
   } catch (error) {
     console.error("Error creating todo:", error);
-    throw error; // Let the caller handle the error
+    throw error;
   }
 };
 
@@ -51,8 +49,6 @@ export const deleteTodo = async (token: string, todoId: number) => {
       },
     });
 
-    // console.log(response);
-
     if (!response.ok) {
       throw new Error(`Failed to fetch todos: ${response.statusText}`);
     }
@@ -65,8 +61,6 @@ export const deleteTodo = async (token: string, todoId: number) => {
 };
 
 export const getAllTodosByUserId = async (token: string, userId: number) => {
-  // console.log("GETTING TODOS with token ", token);
-
   try {
     const response = await fetch(`${API_URL_USERS}/${userId}/todos`, {
       method: "GET",
@@ -74,8 +68,6 @@ export const getAllTodosByUserId = async (token: string, userId: number) => {
         Authorization: `Bearer ${token}`,
       },
     });
-
-    // console.log(response);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch todos: ${response.statusText}`);

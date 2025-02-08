@@ -1,30 +1,18 @@
-import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 import {
   NavigationContainer,
   LogoContainer,
   LinksContainer,
-  LogoutButton,
   UserName,
-  // ThemeToggleButton,
 } from "./Navbar.styles";
 
 import { Button } from "../button/Button.component";
 
-export const Navbar = ({ theme, setTheme }) => {
+export const Navbar = () => {
   const { user, setUser } = useUser();
 
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   console.log("Navbar - theme = ", theme);
-  // }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-  };
 
   const handleLogout = () => {
     setUser(null);
@@ -37,9 +25,6 @@ export const Navbar = ({ theme, setTheme }) => {
       <LogoContainer>
         <Link to="/">Todo App</Link>
       </LogoContainer>
-      {/* <ThemeToggleButton onClick={toggleTheme}>
-        {theme === "dark" ? "Light" : "Dark"} Mode
-      </ThemeToggleButton> */}
       <LinksContainer>
         {user ? (
           <>
@@ -55,6 +40,7 @@ export const Navbar = ({ theme, setTheme }) => {
             <li>
               <Button
                 onClickFunction={handleLogout}
+                type="button"
                 variant="neutral"
                 size="small"
                 shape="square"
