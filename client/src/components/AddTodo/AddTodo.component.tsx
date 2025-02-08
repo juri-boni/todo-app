@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Form, Input } from "./AddTodo.styles";
 import { useUser } from "../../hooks/useUser";
-import { createTodo } from "../../services/todosService";
+import { useTodos } from "../../hooks/useTodos";
+import { createTodo, getAllTodosByUserId } from "../../services/todosService";
 
 import { Button } from "../button/Button.component";
 
@@ -21,8 +22,8 @@ interface TodoData {
 }
 
 export const AddTodo: React.FC = () => {
-  const { token } = useUser();
-  const { user } = useUser();
+  const { token, user } = useUser();
+  const { todos, setTodos } = useTodos();
   const [inputValue, setInputValue] = useState("");
   const todoData: TodoData = {
     title: inputValue,
@@ -39,7 +40,12 @@ export const AddTodo: React.FC = () => {
 
     try {
       const result = await createTodo(token ?? "", todoData);
-      // console.log(result);
+      console.log(result);
+      if (result) {
+        setInputValue("");
+        const fetchedTodos = await getAllTodosByUserId(token, user.id);
+        setTodos(fetchedTodos);
+      }
     } catch (error) {
       console.error("faild to create new todo item", error);
     }
@@ -53,8 +59,22 @@ export const AddTodo: React.FC = () => {
         placeholder="Add your new to-do, you crazy motherfucker"
       />
 
-      <Button type="submit" variant="outlined" size="small" shape="square">
+      <Button
+        type="submit"
+        variant="outlined"
+        size="small"
+        shape="softRounded"
+        textStyle="capitalize"
+      >
         Add
+      </Button>
+      <Button
+        variant="outlined"
+        size="small"
+        shape="softRounded"
+        textStyle="capitalize"
+      >
+        New
       </Button>
     </Form>
   );

@@ -44,6 +44,10 @@ export const TodoItem = ({ todo }) => {
     }
   };
 
+  const handleUpdate = () => {
+    console.log("calling handleUpadate: to be implemented");
+  };
+
   const toggleIsCompleted = () => setIsCompleted(!isCompleted);
 
   return (
@@ -63,18 +67,24 @@ export const TodoItem = ({ todo }) => {
           <TodoText isCompleted={isCompleted}> {title}</TodoText>
         </Link>
       </TodoItemContainer>
-      {/* {!deleted && (
-        <DeleteButton onClick={() => handleDelete()} deleted={deleted}>
-          Delete
-        </DeleteButton>
-      )} */}
+
       <Button
         onClickFunction={toggleIsCompleted}
         variant="outlined"
         size="xsmall"
         shape="square"
+        textStyle="capitalize"
       >
         Delete
+      </Button>
+      <Button
+        onClickFunction={handleUpdate}
+        variant="secondary"
+        size="xsmall"
+        shape="square"
+        textStyle="capitalize"
+      >
+        Update
       </Button>
 
       {/* {deleted && <DeleteButton deleted={deleted}>Recover Todo</DeleteButton>} */}
