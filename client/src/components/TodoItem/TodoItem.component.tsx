@@ -70,11 +70,11 @@ export const TodoItem = ({ todo }) => {
       )} */}
       <Button
         handleFunction={toggleIsCompleted}
-        variant="inverted"
-        size="small"
-        shape="softRounded"
+        variant="outlined"
+        size="xsmall"
+        shape="square"
         state="default"
-        shadow="none"
+        shadow="shadow"
         animation="standard"
       >
         Delete

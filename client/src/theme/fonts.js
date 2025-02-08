@@ -6,7 +6,8 @@ export const fonts = {
 
   // Font sizes
   fontSizes: {
-    xxsmall: "1 rem", // 10px
+    xxxsmall: "0.8rem",
+    xxsmall: "1rem", // 10px
     xsmall: "1.3rem", // 13px
     small: "1.4rem", // 14px
     medium: "1.6rem", // 16px

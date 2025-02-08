@@ -8,22 +8,32 @@ import { shadowStyles } from "./variants/shadowVariants.js";
 import { textStyleVariants } from "./variants/textVariants.js";
 // import { animationStyles } from "./variants/animationVariants.js";
 import { animationVariants } from "./variants/animationVariants.js";
-import {
-  submitAnimation,
-  triggerSubmitAnimation,
-} from "./variants/animationVariants.js";
+// import {
+//   submitAnimation,
+//   triggerSubmitAnimation,
+// } from "./variants/animationVariants.js";
 
 interface ButtonContainerProps {
   variant: "primary" | "secondary" | "inverted" | "danger";
-  size: "xsmall" | "small" | "medium" | "large" | "xlarge";
-  shape: "round" | "circle" | "square" | "softRounded";
-  state: "default" | "active" | "disabled" | "loading";
-  shadow: "none" | "shadow" | "elevated";
-  textStyle: "uppercase" | "lowercase" | "capitalize";
-  // animation: "bounce" | "pulse" | "shake";
-  // hoverAnimation: "bounce" | "pulse" | "shake" | "glow" | "slide";
-  // clickAnimation: "glow" | "pop" | "ripple" | "zoomIn" | "zoomOut" | "tilt";
-  animation: "standard" | "standardGlow";
+  size:
+    | "xxsmall"
+    | "xsmall"
+    | "small"
+    | "medium"
+    | "mediumLarge"
+    | "large"
+    | "xlarge";
+  shape: "round" | "circle" | "square" | "softRounded" | "pill" | "subtle";
+  state: "default" | "active" | "focus" | "disabled" | "loading";
+  shadow: "none" | "shadow" | "elevated" | "deep" | "soft";
+  textStyle:
+    | "uppercase"
+    | "lowercase"
+    | "capitalize"
+    | "bold"
+    | "italic"
+    | "truncate";
+  animation: "standard" | "standardGlow" | "shake" | "bounce" | "fadeIn";
   disabled: boolean;
 }
 

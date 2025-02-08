@@ -1,4 +1,5 @@
 import { css } from "styled-components";
+import { getSize, getSpacing } from "../../../utils/themeHelpers";
 
 export const shapeStyles = {
   round: css`
@@ -18,5 +19,12 @@ export const shapeStyles = {
   `,
   softRounded: css`
     border-radius: 4px;
+  `,
+  pill: css`
+    border-radius: 9999px;
+    padding: 0.5rem 1.5rem;
+  `,
+  subtle: css`
+    border-radius: 8px;
   `,
 };
