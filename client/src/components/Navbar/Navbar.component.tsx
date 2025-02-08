@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 import {
@@ -6,9 +7,10 @@ import {
   LinksContainer,
   LogoutButton,
   UserName,
-  ThemeToggleButton,
+  // ThemeToggleButton,
 } from "./Navbar.styles";
-import { useEffect } from "react";
+
+import { Button } from "../button/Button.component";
 
 export const Navbar = ({ theme, setTheme }) => {
   const { user, setUser } = useUser();
@@ -51,7 +53,15 @@ export const Navbar = ({ theme, setTheme }) => {
               <Link to="/profile">Profile</Link>
             </li>
             <li>
-              <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
+              <Button
+                onClickFunction={handleLogout}
+                variant="neutral"
+                size="small"
+                shape="square"
+                textStyle="capitalize"
+              >
+                Logout
+              </Button>
             </li>
           </>
         ) : (

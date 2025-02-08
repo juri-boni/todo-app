@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Form, Input, Button } from "./AddTodo.styles";
+import { Form, Input } from "./AddTodo.styles";
 import { useUser } from "../../hooks/useUser";
 import { createTodo } from "../../services/todosService";
+
+import { Button } from "../button/Button.component";
 
 interface TodoData {
   title: string;
@@ -50,7 +52,10 @@ export const AddTodo: React.FC = () => {
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Add your new to-do, you crazy motherfucker"
       />
-      <Button type="submit">Add</Button>
+
+      <Button type="submit" variant="outlined" size="small" shape="square">
+        Add
+      </Button>
     </Form>
   );
 };

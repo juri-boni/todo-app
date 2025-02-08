@@ -1,5 +1,5 @@
 import { css, keyframes } from "styled-components";
-
+import { getColor } from "../../../utils/themeHelpers";
 // Animazione di glow con keyframes
 const glowEffect = keyframes`
   0% {
@@ -56,12 +56,13 @@ export const animationVariants = {
   standard: css`
     transition: all 0.3s ease-in-out;
     &:hover {
-      transform: scale(1.1);
-      box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+      transform: scale(1.07);
+      ${"" /* box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2); */}
+      box-shadow: ${getColor("shadow.medium")};
     }
 
     &:active {
-      transform: scale(0.9);
+      transform: scale(0.93);
       transform: translateY(3px);
       box-shadow: 0 0 3px rgba(0, 0, 0, 0);
     }

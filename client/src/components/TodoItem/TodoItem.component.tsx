@@ -69,13 +69,10 @@ export const TodoItem = ({ todo }) => {
         </DeleteButton>
       )} */}
       <Button
-        handleFunction={toggleIsCompleted}
+        onClickFunction={toggleIsCompleted}
         variant="outlined"
         size="xsmall"
         shape="square"
-        state="default"
-        shadow="shadow"
-        animation="standard"
       >
         Delete
       </Button>

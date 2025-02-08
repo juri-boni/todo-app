@@ -36,6 +36,7 @@ export const SidebarTitle = styled.h3`
 
 export const SidebarOptionList = styled.ul`
   list-style: none;
+  margin-top: ${getSpacing("margin.large")};
   padding: ${getSpacing("padding.none")};
 
   /* li {

@@ -3,7 +3,7 @@ import React from "react";
 import { ButtonContainer } from "./Button.styles";
 interface ButtonProps {
   children: React.ReactNode;
-  handleFunction: () => void;
+  onClickFunction: () => void;
   variant?:
     | "primary"
     | "secondary"
@@ -38,7 +38,7 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({
   children,
   // currentTheme,
-  handleFunction = () => null,
+  onClickFunction = () => null,
   variant = "primary",
   size = "medium",
   shape = "round",
@@ -50,7 +50,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <ButtonContainer
-      onClick={handleFunction}
+      onClick={onClickFunction}
       variant={variant}
       size={size}
       shape={shape}
