@@ -4,6 +4,7 @@ import { getColor, getSpacing, getFont } from "../../utils/themeHelpers";
 export const SidebarContainer = styled.aside`
   width: 18%;
   background-color: ${getColor("bg.primary")};
+  margin-top: ${getSpacing("margin.xxlarge")};
   padding: ${getSpacing("padding.large")};
   border-right: 1px solid ${getColor("border.primary")};
 `;

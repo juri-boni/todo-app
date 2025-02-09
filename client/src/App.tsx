@@ -12,6 +12,7 @@ import { Admin } from "./pages/Admin/Admin.component.js";
 import { User } from "./pages/User/User.component.js";
 import { TodoPage } from "./pages/Todos/TodoPage.component.js";
 import { AppContainer, MainContent } from "./App.styles.js";
+import { ProtectedRoute } from "./routes/ProtectedRoute.js";
 import { themes } from "./theme/index.js";
 
 function App() {
@@ -36,18 +37,23 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route
-                  path="/admin"
-                  element={<Admin theme={theme} setTheme={setTheme} />}
-                />
-                <Route
-                  path="/profile"
-                  element={<User theme={theme} setTheme={setTheme} />}
-                />
-                <Route
-                  path="/profile/mytodo/:id"
-                  element={<TodoPage theme={theme} setTheme={setTheme} />}
-                />
+                {/* PROTECTED ROUTES */}
+                <Route element={<ProtectedRoute role="admin" />}>
+                  <Route
+                    path="/admin"
+                    element={<Admin theme={theme} setTheme={setTheme} />}
+                  />
+                </Route>
+                <Route element={<ProtectedRoute role="user" />}>
+                  <Route
+                    path="/profile"
+                    element={<User theme={theme} setTheme={setTheme} />}
+                  />
+                  <Route
+                    path="/profile/mytodo/:id"
+                    element={<TodoPage theme={theme} setTheme={setTheme} />}
+                  />
+                </Route>
               </Routes>
             </MainContent>
           </AppContainer>

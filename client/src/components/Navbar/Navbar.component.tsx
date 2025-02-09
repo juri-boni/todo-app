@@ -34,9 +34,11 @@ export const Navbar = () => {
                 <Link to="/admin">Admin Panel</Link>
               </li>
             )}
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
+            {user.role === "user" && (
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+            )}
             <li>
               <Button
                 onClickFunction={handleLogout}

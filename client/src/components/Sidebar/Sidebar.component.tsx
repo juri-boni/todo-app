@@ -2,19 +2,19 @@ import { Button } from "../button/Button.component";
 
 import {
   SidebarContainer,
-  SidebarTitle,
+  // SidebarTitle,
   SidebarOptionList,
   SidebarOption,
 } from "./Sidebar.styles";
 
 interface SidebarProps {
-  sidebarTitle: string;
+  // sidebarTitle: string;
   theme: string;
   setTheme: (theme: string) => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
-  sidebarTitle,
+  // sidebarTitle,
   theme,
   setTheme,
 }) => {
@@ -24,7 +24,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   };
   return (
     <SidebarContainer>
-      <SidebarTitle>{sidebarTitle}</SidebarTitle>
+      {/* <SidebarTitle>{sidebarTitle}</SidebarTitle> */}
       <Button
         onClickFunction={toggleTheme}
         variant="ghost"
