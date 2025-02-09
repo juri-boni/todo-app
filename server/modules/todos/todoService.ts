@@ -97,26 +97,18 @@ export const addTodo = async (todoData: {
 };
 
 // Delete Todo (Soft Delete)
-export const deleteTodo = async (
-  req: Request,
-  res: Response,
-  todo_id: number
-) => {
-  const { id } = req.params;
+export const deleteTodo = async (req: Request, todo_id: number) => {
   const user_id = (req as any).user.id;
 
   const query = `
     SELECT * FROM todos
     WHERE id = $1 AND user_id = $2 AND deleted = FALSE;
-    `;
+  `;
 
-  const result = await pool.query(query, [id, user_id]);
+  const result = await pool.query(query, [todo_id, user_id]);
 
   if (result.rows.length === 0) {
-    res
-      .status(404)
-      .json({ message: "Todo not found or not owned by the user" });
-    return;
+    throw new Error("Todo not found or not owned by the user");
   }
 
   const deleteQuery = `
@@ -128,9 +120,8 @@ export const deleteTodo = async (
     RETURNING *;
   `;
   const deleteResult = await pool.query(deleteQuery, [todo_id]);
-  return res
-    .status(200)
-    .json({ message: "Todo deleted successfully", todo: deleteResult.rows[0] });
+
+  return deleteResult.rows[0]; // Return only the deleted todo data
 };
 
 // Service: Update a todo by id

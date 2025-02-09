@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { deleteTodo } from "../../services/todosService";
+import { deleteTodo, getAllTodosByUserId } from "../../services/todosService";
 import { useUser } from "../../hooks/useUser";
+import { useTodos } from "../../hooks/useTodos";
 import { Link } from "react-router-dom";
 import { Button } from "../button/Button.component";
 
@@ -23,13 +24,20 @@ interface TodoItemProps {
 }
 
 export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
-  const { token } = useUser();
+  const { token, user } = useUser();
+  const { setTodos } = useTodos();
   const [isCompleted, setIsCompleted] = useState(false);
   const { id, title, deleted } = todo;
 
   const handleDelete = async () => {
     try {
       await deleteTodo(token ?? "", id);
+
+      const fetchedTodos = await getAllTodosByUserId(
+        token ?? "",
+        user?.id ?? 0
+      );
+      setTodos(fetchedTodos);
       toggleIsCompleted();
     } catch (error) {
       console.error("error trying to delete a todo ", error);
@@ -40,7 +48,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
     console.log("calling handleUpadate: to be implemented");
   };
 
-  const toggleIsCompleted = () => setIsCompleted(!isCompleted);
+  const toggleIsCompleted = () => setIsCompleted(deleted || false);
 
   return (
     <TodoContainer>
@@ -53,9 +61,11 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
       {!isCompleted && (
         <CheckboxPending onClick={toggleIsCompleted}></CheckboxPending>
       )}
-      <TodoItemContainer key={id} deleted={deleted ?? false}>
+      <TodoItemContainer key={id}>
         <Link to={`/profile/mytodo/${id}`}>
-          <TodoText isCompleted={isCompleted}> {title}</TodoText>
+          <TodoText isCompleted={isCompleted} deleted={deleted ?? false}>
+            {title}
+          </TodoText>
         </Link>
       </TodoItemContainer>
 

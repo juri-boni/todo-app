@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { registerUser } from "../../services/usersService";
 import { useUser } from "../../hooks/useUser";
+import { Button } from "../../components/button/Button.component";
 import {
   RegisterContainer,
   RegisterForm,
   FormGroup,
+  Input,
+  Select,
+  Label,
   ErrorMessage,
-  SubmitButton,
+  // SubmitButton,
+  ButtonContainer,
 } from "./Register.styles";
 
 export const Register = () => {
@@ -56,8 +61,8 @@ export const Register = () => {
     <RegisterContainer>
       <RegisterForm onSubmit={handleSubmit}>
         <FormGroup>
-          <label htmlFor="username">Username:</label>
-          <input
+          <Label htmlFor="username">Username:</Label>
+          <Input
             id="username"
             type="text"
             placeholder="How should I call you?"
@@ -71,8 +76,8 @@ export const Register = () => {
           />
         </FormGroup>
         <FormGroup>
-          <label htmlFor="email">Email:</label>
-          <input
+          <Label htmlFor="email">Email:</Label>
+          <Input
             id="email"
             type="email"
             placeholder="Tell me your email"
@@ -86,8 +91,8 @@ export const Register = () => {
           />
         </FormGroup>
         <FormGroup>
-          <label htmlFor="password">Password:</label>
-          <input
+          <Label htmlFor="password">Password:</Label>
+          <Input
             id="password"
             type="password"
             placeholder="For the love of God, try not to use 'password'"
@@ -100,9 +105,11 @@ export const Register = () => {
             required
           />
         </FormGroup>
+
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <FormGroup>
-          <label htmlFor="role">Role:</label>
-          <select
+          <Label htmlFor="role">Role:</Label>
+          <Select
             id="role"
             value={role}
             onChange={(e) => setRole(e.target.value)}
@@ -110,12 +117,21 @@ export const Register = () => {
           >
             <option value="user">User</option>
             <option value="admin">Admin</option>
-          </select>
+          </Select>
         </FormGroup>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-        <SubmitButton type="submit" disabled={isLoading}>
-          {isLoading ? "Registering..." : "Register"}
-        </SubmitButton>
+        <ButtonContainer>
+          <Button
+            type="submit"
+            disabled={isLoading}
+            variant="success"
+            textStyle="capitalize"
+            size="medium"
+            shape="softRounded"
+            state={isLoading ? "disabled" : "default"}
+          >
+            {isLoading ? "Registering..." : "Register"}
+          </Button>
+        </ButtonContainer>
       </RegisterForm>
     </RegisterContainer>
   );

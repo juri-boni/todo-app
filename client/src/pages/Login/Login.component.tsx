@@ -103,6 +103,7 @@ export const Login = () => {
           type="submit"
           variant="success"
           shape="softRounded"
+          textStyle="capitalize"
           disabled={isLoading || !email || !password}
           state={!email || !password ? "disabled" : "default"}
         >

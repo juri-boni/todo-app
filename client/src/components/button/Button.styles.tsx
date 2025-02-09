@@ -1,16 +1,16 @@
-// Button.styles.tsx
-import styled, { css } from "styled-components";
-import { variantColors } from "./variants/colorVariants.js";
-import { sizeStyles } from "./variants/sizeVariants.js";
-import { shapeStyles } from "./variants/shapeVariants.js";
-import { stateStyles } from "./variants/stateVariants.js";
-import { shadowStyles } from "./variants/shadowVariants.js";
-import { textStyleVariants } from "./variants/textVariants.js";
-
-import { animationVariants } from "./variants/animationVariants.js";
+import styled from "styled-components";
+import defaultVariants from "./variants/indexVariants"; // Importing all variants in one
 
 interface ButtonContainerProps {
-  variant: "primary" | "secondary" | "inverted" | "danger";
+  variant:
+    | "primary"
+    | "secondary"
+    | "outlined"
+    | "danger"
+    | "ghost"
+    | "success"
+    | "neutral";
+
   size:
     | "xxsmall"
     | "xsmall"
@@ -21,7 +21,7 @@ interface ButtonContainerProps {
     | "xlarge";
   shape: "round" | "circle" | "square" | "softRounded" | "pill" | "subtle";
   state: "default" | "active" | "focus" | "disabled" | "loading";
-  shadow: "none" | "shadow" | "elevated" | "deep" | "soft";
+  shadow: "none" | "shadow" | "medium" | "elevated" | "deep";
   textStyle:
     | "uppercase"
     | "lowercase"
@@ -33,18 +33,30 @@ interface ButtonContainerProps {
   disabled: boolean;
 }
 
-export const ButtonContainer = styled.button<ButtonContainerProps>`
+export const ButtonContainer = styled.button.withConfig({
+  shouldForwardProp: (prop) =>
+    ![
+      "textStyle",
+      "variant",
+      "size",
+      "shape",
+      "state",
+      "shadow",
+      "animation",
+    ].includes(prop),
+})<ButtonContainerProps>`
   transition:
     transform 0.3s ease-in-out,
     color 0.3s ease 0.1s;
   border: none;
   cursor: pointer;
   font-weight: 500;
-  ${(props) => variantColors[props.variant]}
-  ${(props) => sizeStyles[props.size]}
-  ${(props) => shapeStyles[props.shape]}
-  ${(props) => stateStyles[props.state]}
-  ${(props) => shadowStyles[props.shadow]}
-  ${(props) => textStyleVariants[props.textStyle]}
-  ${(props) => animationVariants[props.animation]}
+
+  ${(props) => defaultVariants.variantColors[props.variant]}
+  ${(props) => defaultVariants.sizeStyles[props.size]}
+  ${(props) => defaultVariants.shapeStyles[props.shape]}
+  ${(props) => defaultVariants.stateStyles[props.state]}
+  ${(props) => defaultVariants.shadowStyles[props.shadow]}
+  ${(props) => defaultVariants.textStyleVariants[props.textStyle]}
+  ${(props) => defaultVariants.animationVariants[props.animation]}
 `;

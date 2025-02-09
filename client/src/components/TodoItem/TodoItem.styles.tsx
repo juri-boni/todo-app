@@ -18,22 +18,25 @@ export const TodoContainer = styled.div`
   gap: ${getSpacing("gap.small")};
 `;
 
-export const TodoItemContainer = styled.div<{ deleted: boolean }>`
+export const TodoItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: ${getSpacing("padding.small")};
   border-radius: ${getSize("borderRadius.medium")};
-  text-decoration: ${({ deleted }) => (deleted ? "line-through" : "none")};
+
   width: 95%;
   max-width: 95%;
 `;
 
-export const TodoText = styled.span<{ isCompleted: boolean }>`
+export const TodoText = styled.span.withConfig({
+  shouldForwardProp: (prop) => prop !== "isCompleted" && prop !== "deleted",
+})<{ isCompleted: boolean; deleted: boolean }>`
   font-size: ${getFont("fontSizes.small")};
   font-weight: ${getFont("fontWeights.normal")};
   color: ${({ isCompleted }) =>
     isCompleted ? getColor("text.tertiary") : getColor("text.primary")};
+  text-decoration: ${({ deleted }) => (deleted ? "line-through" : "none")};
 `;
 
 export const CheckboxCompleted = styled(CheckBoxIcon)`

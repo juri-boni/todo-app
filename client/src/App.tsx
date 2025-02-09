@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { UserProvider } from "./context/userContext.js";
 import { TodosProvider } from "./context/todosContext.js";
 import { GlobalStyle } from "./styles/global.js";
+import { Home } from "./pages/Home/Home.component.js";
 import { Login } from "./pages/Login/Login.component.js";
 import { Register } from "./pages/Register/Register.component.js";
 import { Navbar } from "./components/Navbar/Navbar.component.js";
@@ -28,10 +29,11 @@ function App() {
           <GlobalStyle />
           <AppContainer>
             <header>
-              <Navbar theme={theme} setTheme={setTheme} />
+              <Navbar />
             </header>
             <MainContent>
               <Routes>
+                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route
