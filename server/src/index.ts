@@ -25,6 +25,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   const statusCode = err.status || 500;
   res.status(statusCode).json({ message: "Something went wrong!" });
 });
+
 app.use("/api", todosRoutes);
 app.use("/api/users", userRoutes);
 

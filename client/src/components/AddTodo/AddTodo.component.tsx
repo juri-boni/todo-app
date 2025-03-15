@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, Input } from "./AddTodo.styles";
 import { useUser } from "../../hooks/useUser";
 import { useTodos } from "../../hooks/useTodos";
@@ -25,11 +26,13 @@ export const AddTodo: React.FC = () => {
   const { token, user } = useUser();
   const { setTodos } = useTodos();
   const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
   const todoData: TodoData = {
     title: inputValue,
     user_id: user?.id ?? 0,
     created_by: user?.id ?? 0,
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -52,6 +55,10 @@ export const AddTodo: React.FC = () => {
     } catch (error) {
       console.error("faild to create new todo item", error);
     }
+  };
+
+  const handleClick = () => {
+    navigate("/profile/newTodo");
   };
   return (
     <Form onSubmit={handleSubmit}>
@@ -76,6 +83,7 @@ export const AddTodo: React.FC = () => {
         size="small"
         shape="softRounded"
         textStyle="capitalize"
+        onClickFunction={handleClick}
       >
         New
       </Button>

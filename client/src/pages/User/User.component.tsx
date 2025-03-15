@@ -6,7 +6,12 @@ import "./User.styles";
 import { TodoList } from "../../components/TodoList/TodoList.component";
 import { PageContainer } from "../../components/PageContainer/PageContainer.component";
 
-export const User = ({ theme, setTheme }) => {
+interface UserProps {
+  theme: string;
+  setTheme: (theme: string) => void;
+}
+
+export const User: React.FC<UserProps> = ({ theme, setTheme }) => {
   const { token, user } = useUser();
   const { setTodos } = useTodos();
 

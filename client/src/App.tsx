@@ -9,8 +9,9 @@ import { Login } from "./pages/Login/Login.component.js";
 import { Register } from "./pages/Register/Register.component.js";
 import { Navbar } from "./components/Navbar/Navbar.component.js";
 import { Admin } from "./pages/Admin/Admin.component.js";
-import { User } from "./pages/User/User.component.js";
+import { User } from "./pages/User/User.component";
 import { TodoPage } from "./pages/Todos/TodoPage.component.js";
+import { NewTodo } from "./pages/NewTodo/NewTodo.component";
 import { AppContainer, MainContent } from "./App.styles.js";
 import { ProtectedRoute } from "./routes/ProtectedRoute.js";
 import { themes } from "./theme/index.js";
@@ -48,6 +49,10 @@ function App() {
                   <Route
                     path="/profile"
                     element={<User theme={theme} setTheme={setTheme} />}
+                  />
+                  <Route
+                    path="/profile/newTodo"
+                    element={<NewTodo theme={theme} setTheme={setTheme} />}
                   />
                   <Route
                     path="/profile/mytodo/:id"
